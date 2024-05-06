@@ -554,6 +554,11 @@ video {
   --tw-contain-style:  ;
 }
 
+.bg-error {
+  --tw-bg-opacity: 1;
+  background-color: rgb(203 0 53 / var(--tw-bg-opacity));
+}
+
 .italic {
   font-style: italic;
 }

@@ -7,7 +7,8 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"test": "vitest",
-		"lint": "eslint ."
+		"lint": "eslint .",
+		"tw": "tailwindcss -i ./src/main.css -o ./src/output.css --watch"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
