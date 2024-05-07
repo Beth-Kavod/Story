@@ -1,5 +1,6 @@
 import { setCookie } from 'svelte-cookie';
 import { goto } from '$app/navigation';
+import user from '$lib/stores/user';
 
 async function loginUser(event) {
   try {
@@ -23,7 +24,12 @@ async function loginUser(event) {
     const response = await loginAttempt.json();
 
     if (response.success) {
-      // Save the users logged in state
+      // TODO: Save the users logged in state
+      user.update(() => ({
+        username: event.target.username.value,
+        token: response.data.JWT
+      }))
+
       setCookie('story-token', response.data.JWT, 7, true)
       goto('/')
     }
