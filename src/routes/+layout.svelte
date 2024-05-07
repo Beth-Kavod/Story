@@ -1,13 +1,13 @@
 <script>
   import Header from './Header.svelte';
   import Footer from './Footer.svelte';
-  import './styles.css';
+  import '$lib/css/output.css';
 </script>
 
-<div class="app">
+<div class="flex flex-col items-center">
   <Header />
 
-  <main>
+  <main class="flex flex-col items-center">
     <slot />
   </main>
   

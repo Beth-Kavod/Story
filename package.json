@@ -8,7 +8,7 @@
 		"preview": "vite preview",
 		"test": "vitest",
 		"lint": "eslint .",
-		"tw": "tailwindcss -i ./src/main.css -o ./src/output.css --watch"
+		"tw": "tailwindcss -i ./src/lib/css/main.css -o ./src/lib/css/output.css --watch"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
