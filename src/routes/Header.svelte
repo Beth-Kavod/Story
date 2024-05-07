@@ -1,8 +1,9 @@
 <script>
   import logoutUser from '$lib/api/logoutUser';
+
+  import HamburgerMenu from '$lib/components/HamburgerMenu.svelte';
   
   import searchIcon from '$lib/assets/icons/search.svg';
-  import hamburgerIcon from '$lib/assets/icons/hamburger-menu.svg';
   import filterIcon from '$lib/assets/icons/filter.svg';
   import loading from '$lib/assets/icons/loading.svg';
   
@@ -18,9 +19,6 @@
   let filterCount = writable(5);
 
   /* -------------------------- Navbar toggling logic ------------------------- */
-
-  let navOpen = false;
-
 </script>
 
 <nav class="flex justify-between w-11/12 my-2">
@@ -29,7 +27,7 @@
     <a class="text-5xl" href="/">Story</a>
   </h2>
   
-  <label for="search" class="flex w-4/6 bg-white p-2 rounded-lg border border-gray-500">
+  <label for="search" class="w-4/6 bg-white p-2 rounded-lg border border-gray-500 hidden sm:flex">
     <button class="flex justify-center align-center mx-2">
       <img src={filterIcon} alt="Filter button" class="w-9 h-9">
       {#if $filterCount > 0}
@@ -43,23 +41,6 @@
       <img src={searchIcon} alt="search button" class="w-9 h-9">
     </button>
   </label>
-  
-  <div class="relative">
-    <button class="flex flex-col ml-2" on:click={() => navOpen = !navOpen}>
-      <img src={hamburgerIcon} alt="" class="w-12 h-12">
-      <!-- Hamburger -->
-    </button>
-  
-    {#if navOpen}
-      <div class="absolute w-full h-full bg-white z-10 text-black">
-          <a href="/" class="my-2">Home</a>
-          <a href="/about" class="my-2">About</a>
-          <a href="/upload" class="my-2">Upload</a>
-          <a href="/auth/login" class="my-2">Login</a>
-          <a href="/auth/register" class="my-2">Register</a>
-          <!-- You can add more menu items as needed -->
-          <button on:click={logoutUser} class="my-2">Logout</button>
-      </div>
-    {/if}
-  </div>
+
+  <HamburgerMenu />
 </nav>
