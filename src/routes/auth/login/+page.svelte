@@ -1,5 +1,5 @@
 <script>
-  import loginUser from '$lib/helpers/loginUser';  
+  import loginUser from '$lib/api/loginUser';  
 </script>
 
 <form on:submit={(event) => {loginUser(event); console.log("Works")}} class="w-full max-w-sm mt-12">

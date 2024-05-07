@@ -1,5 +1,5 @@
 <script>
-  import logoutUser from '$lib/helpers/logoutUser';
+  import logoutUser from '$lib/api/logoutUser';
   
   import searchIcon from '$lib/assets/icons/search.svg';
   import hamburgerIcon from '$lib/assets/icons/hamburger-menu.svg';
@@ -51,15 +51,14 @@
     </button>
   
     {#if navOpen}
-      <div class="absolute left-0 w-full h-full bg-white z-10">
-        <div class="flex items-center justify-center h-full">
+      <div class="absolute w-full h-full bg-white z-10 text-black">
           <a href="/" class="my-2">Home</a>
           <a href="/about" class="my-2">About</a>
-          <a href="/blog" class="my-2">Blog</a>
+          <a href="/upload" class="my-2">Upload</a>
           <a href="/auth/login" class="my-2">Login</a>
+          <a href="/auth/register" class="my-2">Register</a>
           <!-- You can add more menu items as needed -->
-          <!-- <button on:click={logoutUser} class="my-2">Logout</button> -->
-        </div>
+          <button on:click={logoutUser} class="my-2">Logout</button>
       </div>
     {/if}
   </div>
