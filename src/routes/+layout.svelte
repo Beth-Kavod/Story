@@ -4,7 +4,7 @@
   import '$lib/css/output.css';
 </script>
 
-<div class="flex flex-col items-center">
+<div class="flex flex-col items-center bg-background min-h-screen text-white">
   <Header />
 
   <main class="flex flex-col items-center">
