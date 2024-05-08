@@ -1,6 +1,4 @@
 <script>
-  import logoutUser from '$lib/api/logoutUser';
-
   import HamburgerMenu from '$lib/components/HamburgerMenu.svelte';
   
   import searchIcon from '$lib/assets/icons/search.svg';

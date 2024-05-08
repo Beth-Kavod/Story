@@ -1,10 +1,6 @@
-<script>
-  import registerUser from '$lib/api/registerUser';  
-</script>
-
 <div class="border-4 bg-secondary border-slate-500 rounded-xl mt-12 p-6">
   <h2 class="text-center text-black text-4xl font-semibold">Account register</h2>
-  <form on:submit={(event) => {registerUser(event); console.log("registered")}} class="w-full max-w-sm mt-12">
+  <form method="POST" action="?/register" class="w-full max-w-sm mt-12">
     <div class="md:flex md:items-center mb-6">
       <div class="md:w-1/3">
         <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
