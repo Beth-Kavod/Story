@@ -19,7 +19,11 @@ export const actions = {
     const response = await loginAttempt.json()
 
     if (!response.success) {
-      throw redirect(303, `./login?error=${response.errorMessage.join('+')}`)
+      return {
+        success: false,
+        message: response.errorMessage.join('+'),
+        formData: Object.fromEntries(data)
+      }
     }
 
     cookies.set('story-token', response.data.JWT, {
@@ -27,7 +31,7 @@ export const actions = {
       maxAge: 60 * 60 * 24 * 7 // 7 day expiration
     })
 
-    throw redirect(303, '/profile')
+    return redirect(303, '/profile')
   },
 
   logout: async ({ request, cookies }) => {
@@ -35,6 +39,10 @@ export const actions = {
       path: '/',
     })
 
-    throw redirect(303, '/')
+    return {
+      success: true,
+      message: 'Successfully logged out!',
+      redirect: '/login'
+    }
   }
 }

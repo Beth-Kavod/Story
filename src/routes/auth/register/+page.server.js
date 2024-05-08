@@ -6,7 +6,12 @@ export const actions = {
     const data = await request.formData()
 
     if (data.get('password') !== data.get('password-confirmation')) {
-      throw redirect(303, './register?error=Passwords+do+not+match')
+      return { 
+        success: false,
+        message: 'Passwords do not match',
+        redirect: './register?error=Passwords+do+not+match',
+        formData: Object.fromEntries(data)
+      }
     }
 
     const registerAttempt = await fetch(`${ApiHostname}/auth/register`, {
@@ -24,8 +29,12 @@ export const actions = {
     const response = await registerAttempt.json()
 
     if (!response.success) {
-      console.log(response)
-      throw redirect(303, `./register?error=${response.errorMessage.join('+')}`)
+      return {
+        success: false, 
+        message: response.errorMessage.join('+'), 
+        redirect: (`./register?error=${response.errorMessage.join('+')}`),
+        formData: Object.fromEntries(data)
+      }
     }
 
     cookies.set('story-token', response.data.JWT, {
@@ -33,6 +42,6 @@ export const actions = {
       maxAge: 60 * 60 * 24 * 7 // 7 day expiration
     })
 
-    throw redirect(303, '/profile')
+    return redirect(303, '/')
   }
 }
