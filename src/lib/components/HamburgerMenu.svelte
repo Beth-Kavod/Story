@@ -27,8 +27,7 @@
       <div class="py-1 group" role="none">
         <a href="/auth/login" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="login">Login</a>
         <a href="/auth/register" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="register">Register</a>
-        <!-- TODO: fix to actually logout -->
-        <a href="/" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="logout">Logout</a>
+        <a href="/auth/logout" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="logout">Logout</a>
       </div>
       <!-- <div class="py-1" role="none">
         <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-4">Share</a>
