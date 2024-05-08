@@ -3,7 +3,7 @@
 </script>
 
 <div class="border-4 bg-secondary border-slate-500 rounded-xl mt-12 p-6">
-  <h2 class="text-center text-black text-4xl font-semibold">Login</h2>
+  <h2 class="text-center text-black text-4xl font-semibold">Account login</h2>
   <form on:submit={(event) => {loginUser(event); console.log("Works")}} class="w-full max-w-sm mt-12">
     <div class="md:flex md:items-center mb-6">
       <div class="md:w-1/3">
