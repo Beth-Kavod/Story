@@ -26,7 +26,7 @@ export const actions = {
       }
     }
 
-    cookies.set('story-token', response.data.JWT, {
+    cookies.set('storyToken', response.data.JWT, {
       path: '/',
       maxAge: 60 * 60 * 24 * 7 // 7 day expiration
     })
@@ -35,7 +35,7 @@ export const actions = {
   },
 
   logout: async ({ request, cookies }) => {
-    cookies.delete('story-token', {
+    cookies.delete('storyToken', {
       path: '/',
     })
 
