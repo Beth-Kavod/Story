@@ -5,7 +5,7 @@
 - Create views API 
 - Create about page
 
-- Add +server page to header for logging out
+- Add +server page to header for logging out and searching
 
 
 # Long term ToDo
