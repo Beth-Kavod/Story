@@ -1,4 +1,5 @@
 # ToDo
+- Create filters for searching
 - Create get posts API
 - Create get users API
 - Create get videos, audios, images API

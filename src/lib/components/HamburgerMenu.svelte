@@ -24,18 +24,14 @@
         <a href="/" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="home">Home</a>
         <a href="/profile" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="profile">Profile</a>
       </div>
+      <div class="py-1" role="none">
+        <a href="/posts" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="menu-item-4">Posts</a>
+      </div>
       <div class="py-1 group" role="none">
         <a href="/auth/login" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="login">Login</a>
         <a href="/auth/register" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="register">Register</a>
         <a href="/auth/logout" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="logout">Logout</a>
       </div>
-      <!-- <div class="py-1" role="none">
-        <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-4">Share</a>
-        <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-5">Add to favorites</a>
-      </div>
-      <div class="py-1" role="none">
-        <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-6">Delete</a>
-      </div> -->
   </div>
 {/if}
 
