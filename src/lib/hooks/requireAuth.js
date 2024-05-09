@@ -1,9 +1,9 @@
-// Route guard function to check for the presence of storyToken cookie
+// Route guard function to check for the presence of media_authentication cookie
 export function requireAuth({ request }) {
-  const { storyToken } = request.cookies; // Assuming request.cookies is available
+  const { media_authentication } = request.cookies; // Assuming request.cookies is available
   
-  // If storyToken cookie is not present, redirect to login page
-  if (!storyToken) {
+  // If media_authentication cookie is not present, redirect to login page
+  if (!media_authentication) {
     return {
       status: 302,
       headers: {

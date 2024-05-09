@@ -4,14 +4,14 @@ export const load = async ({ fetch, cookies }) => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${cookies.get('storyToken')}`
+      'Authorization': `Bearer ${cookies.get('media_authentication')}`
     }
   }) */
 }
 
 export const actions = {
   logout: async ({ request, cookies }) => {
-    cookies.delete('storyToken', {
+    cookies.delete('media_authentication', {
       path: '/',
     })
   },

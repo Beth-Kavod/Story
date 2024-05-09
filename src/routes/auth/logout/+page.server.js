@@ -1,7 +1,7 @@
 import { redirect } from '@sveltejs/kit'
 
 export const load = async ({ fetch, cookies }) => {
-  cookies.delete('storyToken', {  
+  cookies.delete('media_authentication', {  
     path: '/',
   })
 
