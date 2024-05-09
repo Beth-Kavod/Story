@@ -21,7 +21,7 @@ export const actions = {
     if (!response.success) {
       return {
         success: false,
-        message: response.errorMessage.join('+'),
+        message: response.errorMessage,
         formData: Object.fromEntries(data)
       }
     }
@@ -31,7 +31,7 @@ export const actions = {
       maxAge: 60 * 60 * 24 * 7 // 7 day expiration
     })
 
-    return redirect(303, '/profile')
+    return redirect(303, `/profile/${response.data.user.userId}`)
   },
 
   logout: async ({ request, cookies }) => {

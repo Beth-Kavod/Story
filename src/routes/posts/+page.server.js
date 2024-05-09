@@ -1,4 +1,4 @@
-export async function load({ params }) {
+/* export async function load({ params }) {
   const { filename } = params;
   // TODO: Test api routes 
   const response = await fetch(`http://localhost:3000/view/image/${filename}`);
@@ -9,4 +9,4 @@ export async function load({ params }) {
   } else {
     throw new Error('Failed to load image');
   }
-}
+} */

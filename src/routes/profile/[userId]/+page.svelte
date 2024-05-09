@@ -5,10 +5,19 @@
 	import pencil from "$lib/assets/icons/pencil.svg";
 	import gear from "$lib/assets/icons/settings-gear.svg";
 	import logout from "$lib/assets/icons/logout.svg";
+
+  export let user;
 </script>
 
 <h1>Profile page</h1>
-
+<h1>User Details</h1>
+{#if user}
+  <p>User ID: {user.id}</p>
+  <p>Name: {user.name}</p>
+  <!-- Display other user details -->
+{:else}
+  <p>Loading...</p>
+{/if}
 <div class="p-12 border-4 bg-secondary border-slate-500 text-black rounded-xl mt-12">
 	<h2 class="text-center mb-2">#PLACEHOLDER</h2>
   <div class="flex flex-col mb-8">

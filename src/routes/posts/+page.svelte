@@ -3,4 +3,4 @@
 </script>
 <!-- TODO: Not completed -->
 <h1>Posts page</h1>
-<img src="{imageUrl}" alt="Image">
+<!-- <img src="{imageUrl}" alt="Image"> -->
