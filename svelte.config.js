@@ -12,9 +12,7 @@ const config = {
       $components: './src/components'
     },
 
-		/* paths: {
-			base: '/api'
-		} */
+		error: 'src/routes/_error.svelte'
 	}
 };
 

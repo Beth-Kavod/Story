@@ -31,7 +31,16 @@ export const actions = {
       maxAge: 60 * 60 * 24 * 7 // 7 day expiration
     })
 
-    return redirect(303, `/profile/${response.data.user.userId}`)
+    // TODO: make this a store
+   const { user } = response.data
+     /* const localUser = {
+      userId: user.userId,
+      username: user.username
+    }
+    // Set some basic user information in local storage for easy access
+    localStorage.setItem('user', JSON.stringify(localUser)) */
+
+    return redirect(303, `/profile/${user.userId}`)
   },
 
   logout: async ({ request, cookies }) => {
