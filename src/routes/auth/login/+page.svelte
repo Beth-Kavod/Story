@@ -50,7 +50,7 @@
 
 <!--
 
-Gargabe
+Gargabe, please don't look at it. if you remove this it deletes the whole database. 
 
 <form on:submit={(event) => loginUser(event)}>
   <label for="username">

@@ -11,8 +11,6 @@ const config = {
     alias: {
       $components: './src/components'
     },
-
-		error: 'src/routes/_error.svelte'
 	}
 };
 
