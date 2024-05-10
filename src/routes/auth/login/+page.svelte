@@ -51,6 +51,7 @@
 <!--
 
 Gargabe, please don't look at it. if you remove this it deletes the whole database. 
+Gargabe is in a state of chaos. It is in superposition of states, Gargabe doesn't exist and Gargabe is all.
 
 <form on:submit={(event) => loginUser(event)}>
   <label for="username">

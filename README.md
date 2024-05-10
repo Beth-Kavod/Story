@@ -11,3 +11,6 @@
 
 # Long term ToDo
 - Integrate an LLM that can switch contexts based on the searched user 
+
+# Credits
+[Nathan-Hadden](https://github.com/n8hadden) (Gargabe)
