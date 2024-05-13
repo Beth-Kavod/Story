@@ -1,5 +1,6 @@
 import { redirect } from '@sveltejs/kit'
 import { ApiHostname } from '$env/static/private'
+import { userStore } from '$lib/stores/userStore.js'
 
 export const actions = {  
   login: async ({ request, cookies }) => {
@@ -32,13 +33,12 @@ export const actions = {
     })
 
     // TODO: make this a store
-   const { user } = response.data
-     /* const localUser = {
+    const { user } = response.data
+    
+    userStore.set({
+      username: user.username,
       userId: user.userId,
-      username: user.username
-    }
-    // Set some basic user information in local storage for easy access
-    localStorage.setItem('user', JSON.stringify(localUser)) */
+    })
 
     return redirect(303, `/profile/${user.userId}`)
   },
@@ -47,6 +47,11 @@ export const actions = {
     cookies.delete('media_authentication', {
       path: '/',
     })
+
+    userStore.set({
+      userId: "",
+      username: ""
+    });
 
     return {
       success: true,
