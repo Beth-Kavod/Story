@@ -6,6 +6,7 @@ export const actions = {
 
     // TODO: Upload files, placeholder for now
     const UPLOAD_SUCCESS = true
+    
     if (UPLOAD_SUCCESS) {
       return {
         success: true,
