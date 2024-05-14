@@ -11,18 +11,24 @@
   function setUserData() {
     const urlParams = new URLSearchParams(window.location.search);
 
-    const userData = {
-      username: urlParams.get("username"),
-      userId: urlParams.get("userId")
-    }
-    
-    if (!userData.username || !userData.userId) {
-      window.location.replace(`/auth/login`)
+    const login = urlParams.get("login")
+
+    if (login === "true") { 
+      const userData = {
+        username: urlParams.get("username"),
+        userId: urlParams.get("userId")
+      }
+      
+      if (!userData.username || !userData.userId) {
+        window.location.replace(`/auth/login`)
+      }
+      
+      window.localStorage.setItem("userStore", JSON.stringify(userData))
     }
 
-    window.localStorage.setItem("userStore", JSON.stringify(userData))
+    const userId = JSON.parse(window.localStorage.getItem("userStore")).userId
 
-    window.location.replace(`/profile/${userData.userId}`)
+    window.location.replace(`/profile/${userId}`)
   }
 
   onMount(setUserData)
