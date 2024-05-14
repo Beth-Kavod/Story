@@ -7,7 +7,7 @@
   // This is a bootleg solution. don't do this
   // This is the only way I could get it to set local storage. 
   // When you log in it redirects you to this page with query params, then sets those in local storage.
-  // This is unsafe.
+  // This is unsafe.  Which is funny.
   function setUserData() {
     const urlParams = new URLSearchParams(window.location.search);
 
@@ -26,9 +26,14 @@
       window.localStorage.setItem("userStore", JSON.stringify(userData))
     }
 
-    const userId = JSON.parse(window.localStorage.getItem("userStore")).userId
+    const user = JSON.parse(window.localStorage.getItem("userStore")) || null
 
-    window.location.replace(`/profile/${userId}`)
+    if (!user) {
+      window.location.replace(`/auth/login`)
+      return
+    }
+
+    window.location.replace(`/profile/${user.userId}`)
   }
 
   onMount(setUserData)

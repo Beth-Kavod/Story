@@ -30,7 +30,7 @@
       {/if}
     </button>
 
-    <input type="text" id="search" placeholder="Search" class="w-full border border-gray-200 px-2 rounded">
+    <input type="text" id="search" placeholder="Search" class="w-full border border-gray-200 px-2 rounded text-black">
     
     <button class="ml-2" on:click={() => {alert("Search works")}}>  <!-- TODO: Make this search -->
       <img src={searchIcon} alt="search button" class="w-9 h-9">

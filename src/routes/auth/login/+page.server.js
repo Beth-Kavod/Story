@@ -29,7 +29,8 @@ export const actions = {
 
     cookies.set('media_authentication', response.data.JWT, {
       path: '/',
-      maxAge: 60 * 60 * 24 * 7 // 7 day expiration
+      maxAge: 60 * 60 * 24 * 7, // 7 day expiration
+      httpOnly: false // TODO: set to true, needs to be set to false in development
     })
 
     const { user } = response.data
