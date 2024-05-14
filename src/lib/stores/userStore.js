@@ -8,7 +8,7 @@ let value = {
 
 // Funny code, but it works
 if (browser) {
-	value = JSON.parse(window.localStorage.getItem('userStore'))
+	value = JSON.parse(window.localStorage.getItem('userStore')) || value
 }
 
 export const userStore = writable(value)

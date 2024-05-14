@@ -3,7 +3,6 @@
   
   import searchIcon from '$lib/assets/icons/search.svg';
   import filterIcon from '$lib/assets/icons/filter.svg';
-  import loading from '$lib/assets/icons/loading.svg';
   
   import { writable } from 'svelte/store';
 
@@ -15,8 +14,6 @@
   }
 
   let filterCount = writable(5);
-
-  /* -------------------------- Navbar toggling logic ------------------------- */
 </script>
 
 <nav class="flex justify-between w-11/12 my-2">

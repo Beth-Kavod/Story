@@ -1,9 +1,33 @@
 <script>
+  import LoadingSpinner from "$lib/assets/icons/loading.svg";
   import { userStore } from "$lib/stores/userStore";
+  import { redirect } from '@sveltejs/kit'
+  import { onMount } from 'svelte';
 
-  localStorage.setItem("userStore", JSON.stringify($userStore))
-  console.log($userStore)
-  
+  // This is a bootleg solution. don't do this
+  // This is the only way I could get it to set local storage. 
+  // When you log in it redirects you to this page with query params, then sets those in local storage.
+  // This is unsafe.
+  function setUserData() {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const userData = {
+      username: urlParams.get("username"),
+      userId: urlParams.get("userId")
+    }
+    
+    if (!userData.username || !userData.userId) {
+      window.location.replace(`/auth/login`)
+    }
+
+    window.localStorage.setItem("userStore", JSON.stringify(userData))
+
+    window.location.replace(`/profile/${userData.userId}`)
+  }
+
+  onMount(setUserData)
 </script>
 
-<h1>Hello</h1>
+<div class="flex flex-col justify-center items-center h-screen">
+  <img src={LoadingSpinner} alt="" class="w-96 h-96">
+</div>
