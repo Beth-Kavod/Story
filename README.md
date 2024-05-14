@@ -1,9 +1,6 @@
 # ToDo
 - Create filters for searching
-- Create get posts API
-- Create get users API
-- Create get videos, audios, images API
-- Create views API 
+- Create views API page
 - Create about page
 
 - Add +server page to header for logging out and searching
