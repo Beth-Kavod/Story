@@ -1,28 +1,6 @@
 <script>
-  // import 
-
-  function printFormData(event) {
-    event.preventDefault();
-
-    const formData = new FormData();
-
-    formData.append("files", document.getElementById("files").files[0]);
-    formData.append("date", document.getElementById("date").value);
-    formData.append("title", document.getElementById("title").value);
-    formData.append("description", document.getElementById("description").value);
-    formData.append("tags", selectedTags);
-    
-    console.log(formData);
-
-    // Don't let the form submit
-    if (formData.get("files") === "undefined") {
-      console.log("Broke")
-      return
-    }
-
-    // Call the upload API if the form is valid
-  }
-
+  import { enhance } from '$app/forms';
+  export let form
 
   /* ---------------------------- Tag functionality --------------------------- */
 
@@ -42,24 +20,28 @@
 </script>
 
 <h1>Upload page</h1>
+{#if form?.message}
+  {console.log(form)}
+  <p class={`text-xl text-center mb-4 ${form.success ? 'text-primary' : 'text-error'}`}>{form.message}</p>
+{/if}
 
-<form on:submit={(event) => {printFormData(event)}} class="flex flex-col bg-white text-black gap-y-2">
+<form method="POST" action="?/uploadFiles" enctype="multipart/form-data" use:enhance  class="flex flex-col bg-white text-black gap-y-2">
   <!-- TODO: Make the upload form look like the figma -->
   <label for="files">
     Upload:
-    <input id="files" type="file">
+    <input id="files" type="file" name="files">
   </label>
   <label for="date">
     Date:
-    <input id="date" type="date">
+    <input id="date" type="date" name="date">
   </label>
   <label for="title">
     Title:
-    <input id="title" type="text">
+    <input id="title" type="text" name="title">
   </label>
   <label for="description">
     Description:
-    <input id="description" type="text">
+    <input id="description" type="text" name="description">
   </label>
   <label for="tags">
     Tags:
@@ -69,6 +51,10 @@
       <option value="tag2">Tag 2</option>
     </datalist>
   </label>
+
+  <!-- Hidden input field to store the selectedTags array in FormData for request -->
+  <input type="hidden" name="tags" bind:value={selectedTags}>
+
   {#if selectedTags.length > 0}
     <div>
       Selected Tags:
@@ -76,7 +62,7 @@
         {#each selectedTags as tag}
           <li>
             {tag}
-            <button class="text-red-500" on:click={() => removeTag(tag)}>Remove</button>
+            <button class="text-red-500" on:click={event => { removeTag(tag); event.preventDefault() }}>Remove</button>
           </li>
         {/each}
       </ul>

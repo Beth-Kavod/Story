@@ -15,8 +15,6 @@
     localStorage.removeItem('userStore')
     userStore.set({ username: "", userId: "" })
   }
-
-  console.log($userStore)
 </script>
 
 <div class="relative inline-block text-left">
@@ -34,6 +32,9 @@
       </div>
       <div class="py-1" role="none">
         <a href="/posts" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="menu-item-4">Posts</a>
+      </div>
+      <div class="py-1" role="none">
+        <a href="/upload" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="menu-item-4">Upload</a>
       </div>
       <div class="py-1 group" role="none">
         <a href="/auth/login" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="login">Login</a>
