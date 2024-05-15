@@ -15,23 +15,23 @@
   }
 </script>
 
-<label for="files{index}">
+<label for="files{index}" class="mb-2">
   Upload:
-  <input id="files{index}" type="file" name={"files" + index}>
+  <input class="text-sm text-gray-900 rounded cursor-pointer bg-gray-50 focus:outline-none"  id="files{index}" type="file" name={"files" + index}>
 </label>
-<label for="date{index}">
+<label for="date{index}" class="mb-2">
   Date:
   <input id="date{index}" type="date" name={"date" + index}>
 </label>
-<label for="title{index}">
+<label for="title{index}" class="mb-2">
   Title:
   <input id="title{index}" type="text" name={"title" + index}>
 </label>
-<label for="description{index}">
+<label for="description{index}" class="mb-2">
   Description:
   <input id="description{index}" type="text" name={"description" + index}>
 </label>
-<label for="tags{index}">
+<label for="tags{index}" class="mb-2">
   Tags:
   <input list="knownTags" id="tags{index}" type="text" on:input={addTag} name={"tags" + index}>
   <datalist id="knownTags">
