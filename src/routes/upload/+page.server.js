@@ -1,16 +1,22 @@
+import { ApiHostname } from '$env/static/private'
+
 export const actions = {
   uploadFiles: async ({ request }) => {
     const formData = await request.formData()
 
     console.log(Object.fromEntries(formData))
 
-    // TODO: Upload files, placeholder for now
-    const UPLOAD_SUCCESS = true
+    const uploadRequest = await fetch(`${ApiHostname}/file/upload`, {
+      method: 'POST',
+      body: formData
+    })
+
+    const response = await uploadRequest.json()
     
-    if (UPLOAD_SUCCESS) {
+    if (!response.success) {
       return {
         success: true,
-        message: 'Upload successful, upload another?'
+        message: 'Upload successful, upload more?'
       }
     } else {
       // Filter out file input, you cant send it back in the response.

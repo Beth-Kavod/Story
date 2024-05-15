@@ -10,6 +10,8 @@
   function addForm() {
     forms.update(existingForms => [...existingForms, { /* new form parameters */ }]);
   }
+
+  addForm()
 </script>
 
 <!-- {#if form?.message}

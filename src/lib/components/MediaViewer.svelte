@@ -2,6 +2,7 @@
   export let filename
   export let fileType
   export let title
+  export let classes = ""
 
   import { onMount } from 'svelte'
   import { writable } from 'svelte/store'
@@ -33,14 +34,14 @@
 <!-- This is the one thing I really dislike about Svelte... Its a mess -->
 {#if $mediaUrl}
   {#if fileType === "image"}
-    <img src={$mediaUrl} alt={title || filename} />
+    <img class={classes} src={$mediaUrl} alt={title || filename} />
   {:else if fileType === "video"}
     <video controls>
-      <source src={$mediaUrl} alt={title || filename} />  
+      <source class={classes} src={$mediaUrl} alt={title || filename} />  
       <track kind="captions">
     </video>
   {:else if fileType === "audio"}
-    <audio src={$mediaUrl} controls>
+    <audio class={classes} src={$mediaUrl} controls>
       <source src={$mediaUrl} alt={title || filename} />  
     </audio>
   {/if}

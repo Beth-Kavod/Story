@@ -1,9 +1,21 @@
+# Hadden
+Work on uploadForm component to make it look nice.
+
+Once your done with the form, work on the post page and style the component UserPost.svelte to look like the Figma.
+For the time being you can omit the journal section
+
+
+
+
 # ToDo
+- Add journal entries route
+- Fix bug where the my-files load action happens when you click on the hamburger menu
 - Create filters for searching
 - Create views API page
 - Create about page
 
-- Add +server page to header for logging out and searching
+- Change profile page to contain post and file data rather then views
+- Add user followers system
 
 
 # Long term ToDo
