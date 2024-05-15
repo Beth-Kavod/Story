@@ -4,6 +4,7 @@
   import { fly } from 'svelte/transition';
   import { userStore } from "$lib/stores/userStore";
   import { writable } from "svelte/store";
+  import { onMount } from 'svelte';
 
   let menuOpen = writable(false);
 
@@ -15,6 +16,22 @@
     localStorage.removeItem('userStore')
     userStore.set({ username: "", userId: "" })
   }
+
+  /* ------------ Close the menu when the user clicks outside of it ----------- */
+
+  function handleClick(event) {
+    if (!event.target.closest('#menu-button') && $menuOpen) {
+      toggleMenu()
+    }
+  }
+
+  onMount(() => {
+    document.addEventListener('click', handleClick);
+    
+    return () => {
+      document.removeEventListener('click', handleClick);
+    };
+  });
 </script>
 
 <div class="relative inline-block text-left">
@@ -42,7 +59,6 @@
         <a href="/auth/register" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="register">Register</a>
         <a href="/auth/logout" on:click={logout}  class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="logout">Logout</a>
       </div>
-  </div>
-{/if}
-
+    </div>
+  {/if}
 </div>
