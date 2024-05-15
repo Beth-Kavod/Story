@@ -5,9 +5,7 @@
 
   import { onMount } from 'svelte'
   import { writable } from 'svelte/store'
-
-  // Access the environment variable
-  const apiUrl = "http://localhost:3000"
+  import loading from '$lib/assets/icons/loading.svg'
 
   // Initialize a writable store to hold the image URL
   const mediaUrl = writable(null)
@@ -16,7 +14,7 @@
   onMount(async () => {
     try {
       console.log("Mounted")
-      const response = await fetch(`${apiUrl}/view/${fileType}/${filename}`, { credentials: 'include' })
+      const response = await fetch(`/api/view/${fileType}/${filename}`, { credentials: 'include' })
       
       if (!response.ok) {
         throw new Error('Failed to fetch image')
@@ -32,23 +30,20 @@
   })
 </script>
 
+<!-- This is the one thing I really dislike about Svelte... Its a mess -->
 {#if $mediaUrl}
   {#if fileType === "image"}
-    <img src={$mediaUrl} alt={title} />
-  {/if}
-  {#if fileType === "video"}
+    <img src={$mediaUrl} alt={title || filename} />
+  {:else if fileType === "video"}
     <video controls>
-      <source src={$mediaUrl} alt={title} />  
+      <source src={$mediaUrl} alt={title || filename} />  
       <track kind="captions">
     </video>
-  {/if}
-  {#if fileType === "audio"}
+  {:else if fileType === "audio"}
     <audio src={$mediaUrl} controls>
-      <source src={$mediaUrl} alt={title} />  
+      <source src={$mediaUrl} alt={title || filename} />  
     </audio>
   {/if}
 {:else}
-  <div>Loading...</div>
+  <img src={loading} alt="loading spinner" />
 {/if}
-
-<!-- Use this component in your Svelte application -->
