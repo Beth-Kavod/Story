@@ -12,9 +12,9 @@ For the time being you can omit the journal section
 
 
 
-
 # ToDo
 - Add journal entries route
+- Fix header to be dropdown
 - Fix bug where the my-files load action happens when you click on the hamburger menu
 - Create filters for searching
 - Create views API page
