@@ -2,11 +2,12 @@
   export let index;
   let selectedTags = [];
 
-  function addTag(event) {
-    const tag = event.target.value;
-    if (tag && !selectedTags.includes(tag)) {
-      selectedTags = [...selectedTags, tag];
-      event.target.value = ''; // Clear the input field
+  function addTag(tagsId) {
+    const tagElement = document.getElementById(tagsId)
+    const tagInput = tagElement.value
+    if (tagInput && !selectedTags.includes(tagInput)) {
+      selectedTags = [...selectedTags, tagInput];
+      tagElement.value = ''; // Clear the input field
     }
   }
 
@@ -17,7 +18,7 @@
 
 <label for="files{index}" class="mb-2">
   Upload:
-  <input class="text-sm text-gray-900 rounded cursor-pointer bg-gray-50 focus:outline-none"  id="files{index}" type="file" name={"files" + index}>
+  <input class="text-sm text-gray-900 rounded cursor-pointer bg-gray-50 focus:outline-none"  id="file{index}" type="file" name={"file" + index}>
 </label>
 <label for="date{index}" class="mb-2">
   Date:
@@ -33,12 +34,13 @@
 </label>
 <label for="tags{index}" class="mb-2">
   Tags:
-  <input list="knownTags" id="tags{index}" type="text" on:input={addTag} name={"tags" + index}>
+  <input list="knownTags" id="tags{index}" type="text">
   <datalist id="knownTags">
     <!-- TODO: Add more tags -->
     <option value="tag1">Tag 1</option>
     <option value="tag2">Tag 2</option>
   </datalist>
+  <button class="text-blue-500 bg-slate-500" on:click={event => { addTag(`tags${index}`); event.preventDefault() }}>Add</button>
 </label>
 
 <!-- Hidden input field to store the selectedTags array in FormData for request -->
