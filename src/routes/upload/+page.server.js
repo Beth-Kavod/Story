@@ -2,18 +2,19 @@ import { ApiHostname } from '$env/static/private'
 
 export const actions = {
   uploadFiles: async ({ request, cookies }) => {
-    const formData = await request.formData();
-    console.log(cookies.getAll())
-    // ! TODO: Fix this to include cookies in request
+    const formData = await request.formData()
+
+    // SvelteKit won't send cookies with the request so I have to send the backup cookie in the headers 
+    // I would rather not do this but I can't waste any more time trying to fix the cookies
     const uploadRequest = await fetch(`${ApiHostname}/file/upload`, {
       method: 'POST',
-      mode: 'cors',
-      credentials: 'include', 
+      headers: {
+        "x-access-token": cookies.get('media_authentication')
+      },
       body: formData
     })
 
     const response = await uploadRequest.json()
-    console.log(response)
 
     if (response.success) {
       return {
