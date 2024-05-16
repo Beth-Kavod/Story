@@ -18,19 +18,27 @@
 
 <label for="files{index}" class="mb-2">
   Upload:
-  <input class="text-sm text-gray-900 rounded cursor-pointer bg-gray-50 focus:outline-none"  id="file{index}" type="file" name={"file" + index}>
+  <input class="text-sm text-gray-900 rounded cursor-pointer bg-gray-50 focus:outline-none"  id="file{index}" type="file" name="file{index}" required>
 </label>
 <label for="date{index}" class="mb-2">
   Date:
-  <input id="date{index}" type="date" name={"date" + index}>
+  <input id="date{index}" type="date" name="date{index}" required>
 </label>
 <label for="title{index}" class="mb-2">
   Title:
-  <input id="title{index}" type="text" name={"title" + index}>
+  <input id="title{index}" type="text" name="title{index}">
 </label>
 <label for="description{index}" class="mb-2">
   Description:
-  <input id="description{index}" type="text" name={"description" + index}>
+  <input id="description{index}" type="text" name="description{index}">
+</label>
+<label for="privacy{index}" class="mb-2">
+  Privacy:
+  <select id="privacy{index}" name="privacy{index}">
+    <option value="Private">Private</option>
+    <option value="Public">Public</option>
+    <option value="Unlisted">Unlisted</option>
+  </select>
 </label>
 <label for="tags{index}" class="mb-2">
   Tags:
@@ -44,7 +52,7 @@
 </label>
 
 <!-- Hidden input field to store the selectedTags array in FormData for request -->
-<input type="hidden" name={"tags" + index} bind:value={selectedTags}>
+<input type="hidden" name="tags{index}" bind:value={selectedTags}>
 
 {#if selectedTags.length > 0}
   <div>

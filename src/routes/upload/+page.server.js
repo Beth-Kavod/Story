@@ -1,19 +1,21 @@
 import { ApiHostname } from '$env/static/private'
 
 export const actions = {
-  uploadFiles: async ({ request }) => {
-    const formData = await request.formData()
-
-    console.log(Object.fromEntries(formData))
-
+  uploadFiles: async ({ request, cookies }) => {
+    const formData = await request.formData();
+    console.log(cookies.getAll())
+    // ! TODO: Fix this to include cookies in request
     const uploadRequest = await fetch(`${ApiHostname}/file/upload`, {
       method: 'POST',
+      mode: 'cors',
+      credentials: 'include', 
       body: formData
     })
 
     const response = await uploadRequest.json()
-    
-    if (!response.success) {
+    console.log(response)
+
+    if (response.success) {
       return {
         success: true,
         message: 'Upload successful, upload more?'
