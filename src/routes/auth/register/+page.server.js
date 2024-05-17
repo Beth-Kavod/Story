@@ -5,7 +5,7 @@ export const actions = {
   register: async ({ request, cookies }) => {
     const data = await request.formData()
 
-    if (data.get('password') !== data.get('password-confirmation')) {
+    if (data.get('password') !== data.get('confirm_password')) {
       return { 
         success: false,
         message: 'Passwords do not match',
@@ -31,8 +31,8 @@ export const actions = {
     if (!response.success) {
       return {
         success: false, 
-        message: response.errorMessage.join('+'), 
-        redirect: (`./register?error=${response.errorMessage.join('+')}`),
+        message: response.errorMessage, 
+        redirect: (`./register?error=${response.message.join('+')}`),
         formData: Object.fromEntries(data)
       }
     }
