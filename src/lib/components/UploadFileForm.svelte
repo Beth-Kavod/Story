@@ -16,8 +16,7 @@
   }
 </script>
 
-<label for="files{index}" class="mb-2">
-  Upload:
+<label for="files{index}" class="mb-2"> Upload:
   <input class="text-sm text-gray-900 rounded cursor-pointer bg-gray-50 focus:outline-none"  id="file{index}" type="file" name="file{index}" required>
 </label>
 <label for="date{index}" class="mb-2">
