@@ -1,9 +1,26 @@
 <script>
   import { enhance } from '$app/forms';
   import searchIcon from '$lib/assets/icons/search.svg';
+  import UserPost from '$lib/components/UserPost.svelte';
   export let form
 
   console.log(form)
+
+  /* ------------------------------ Testing data ------------------------------ */
+
+  const testData = {
+    title: 'Test Title',
+    description: 'Test Content',
+    date: "2024-05-17T21:09:46.708Z",
+    videos: [],
+    images: [],
+    audios: [],
+    journals: [],
+    tags: ['tag1', 'tag2'],
+    comments: [],
+    privacy: 'Private',
+
+  }
 </script>
 
 <h1>Posts page</h1>
@@ -16,7 +33,5 @@
 </form>
 <!-- Post container -->
 <div class="mt-4 grid grid-cols-3 w-9/12 gap-4">
-  <div class="border-4 bg-secondary border-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. In, inventore! Est dolore repellendus alias magnam deserunt! Quisquam sapiente incidunt distinctio quae, quia unde, assumenda vitae voluptates fuga, suscipit laborum culpa!</div>
-  <div class="border-4 bg-secondary border-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. In, inventore! Est dolore repellendus alias magnam deserunt! Quisquam sapiente incidunt distinctio quae, quia unde, assumenda vitae voluptates fuga, suscipit laborum culpa!</div>
-  <div class="border-4 bg-secondary border-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. In, inventore! Est dolore repellendus alias magnam deserunt! Quisquam sapiente incidunt distinctio quae, quia unde, assumenda vitae voluptates fuga, suscipit laborum culpa!</div>
+  <UserPost postData={testData}/>
 </div>

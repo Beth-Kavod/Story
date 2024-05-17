@@ -46,5 +46,7 @@
     </audio>
   {/if}
 {:else}
-  <img src={loading} alt="loading spinner" />
+  <div class="w-52 h-52">
+    <img src={loading} alt="loading spinner" />
+  </div>
 {/if}

@@ -7,6 +7,6 @@
   <title>Image Proxy</title>
 </svelte:head>
 
-<div class="h-full w-4/6 p-4 rounded bg-white border-gray-500 border-4">
+<div class="h-full min-w-60 w-4/6 p-4 rounded bg-white border-gray-500 border-4">
   <MediaViewer filename={data.filename} fileType={data.fileType} />
 </div>

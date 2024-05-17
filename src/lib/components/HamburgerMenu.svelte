@@ -66,7 +66,7 @@
         <div class="text-gray-800 block pl-4 pr-8 py-2 bg-gray-300">Auth</div>
         <a href="/auth/login" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="login">Login</a>
         <a href="/auth/register" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="register">Register</a>
-        <a href="/auth/logout" on:click={logout}  class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300 hover:rounded-b" role="menuitem" tabindex="-1" id="logout">Logout</a>
+        <a href="/auth/logout" on:click={logout}  class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300 hover:rounded-b rounded-b" role="menuitem" tabindex="-1" id="logout">Logout</a>
       </div>
     </div>
   {/if}
