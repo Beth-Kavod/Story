@@ -10,17 +10,15 @@ export const actions = {
     if (data.get('content')) searchQuery += `content=${data.get('content')}&`
     // TODO: Add more filters
 
-    const fetchPosts = await fetch(`${ApiHostname}/search/posts`, {
+    const fetchPosts = await fetch(`${ApiHostname}/search/posts${searchQuery}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'x-access-token': cookies.get('media_authentication')
       },
-      credentials: 'same-origin'
     })
 
     const response = await fetchPosts.json()
-
-    console.log(response)
 
     if (!response.success) {
       return {
@@ -29,6 +27,9 @@ export const actions = {
       }
     }
 
-    return response
+    return {
+      success: true,
+      data: response.data
+    }
   }
 }
