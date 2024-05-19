@@ -6,7 +6,7 @@
   <title>Search Posts</title>
 </svelte:head>
 
-<div class="text-black border-4 bg-white border-primary rounded-xl mt-4 min-w-min w-64 h-fit">
+<div class="text-black border-4 bg-white border-primary rounded-xl min-w-min w-64 h-fit">
   <div class="w-full h-min border-b-2 p-2 border-black flex justify-between">
     <div class="w-min bg-gray-300 px-2 rounded text-lg flex items-center">{new Date(postData.date).toLocaleDateString()}</div>
     <details class="w-min list-none mr-2 text-sm flex flex-wrap gap-1 justify-center">
@@ -23,7 +23,7 @@
   </div>
   
   <div class="border-b-2 border-black flex flex-col min-h-fit w-full">
-    <p class="text-2xl ml-2">{postData.title}</p>
+    <p class="text-xl ml-2">{postData.title}</p>
   </div>
   
   <div class="border-b-2 border-black flex flex-col min-h-fit w-full">
@@ -89,22 +89,29 @@
   </details>
   {/if}
 
-  {#if postData.journals}
-  <div class="flex flex-col min-h-fit w-full">
-    <p class="text-2xl ml-2">Journal</p>
-      <!-- TODO: Make this auto generated -->
-    <table border="1" class="mx-2 mb-2 border-2 border-black">
-      <thead>
-        <th>Time</th>
-        <th>Entry</th>
-      </thead>
-      <tbody>
-        <tr>
-          <td>06:38</td>
-          <td>hello</td>
-        </tr>
-      </tbody>
-    </table>  
-  </div>
+  {#if postData.journal}
+    <details class="border-black flex flex-col min-h-fit w-full">
+      <summary class="text-2xl ml-2 flex justify-between">
+        <li>Journal</li>
+        <div class="mr-2 text-gray-500">({postData.journal.length})</div>
+      </summary>
+
+      <table border=1 class="w-full mb-2 border-2 border-black border-collapse">
+        <thead>
+          <tr>
+            <th class="border border-slate-700">Time</th>
+            <th class="border border-slate-700">Entry</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each postData.journal as note}
+            <tr>
+              <td class="text-center border border-slate-700">{note.time}</td>
+              <td class="text-center break-inside-avoid-column border border-slate-700">{note.entry}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </details>
   {/if}
 </div>

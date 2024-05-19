@@ -268,23 +268,34 @@
   ] */
 </script>
 
-<h1>Posts page</h1>
+<h1 class="text-3xl mb-2">Search Posts</h1>
 <!-- {#if !form.success && form.message}
   <p>{form.message}</p>
 {/if} -->
 <form class="flex bg-white p-2 border rounded" method="POST" action="?/searchPosts" use:enhance>
-  <label class="text-black flex items-center mr-2" for="search">Title:</label>
-  <input type="text" id="search" name="title" placeholder="Search" class="w-full border border-gray-200 px-2 rounded text-black">
+  <label class="text-black flex items-center mr-2" for="search">
+    Title:
+    <input type="text" id="search" name="title" value={form?.data.query.title || ''} placeholder="Search" class="w-full border border-gray-200 px-2 rounded text-black">
+  </label>
+
   <button type="submit" class="ml-2">
     <img src={searchIcon} alt="search button" class="w-9 h-9">
   </button>
 </form>
 
+<!-- <button on:click={console.log(form)}>log</button> -->
+
+
 <!-- Post container -->
-<div class="mt-4 grid grid-cols-3 grid-flow-row gap-6">
-  {#if form && form.data.searchResults}
+{#if form && form.data.searchResults}
+  <div class="text-3xl my-4 w-full">Search Count: {form?.data.postCount}</div>
+  <div class="grid grid-cols-3 grid-flow-row gap-6">
     {#each form.data.searchResults as post}
       <UserPost postData={post}/>
     {/each}
-  {/if}
-</div>
+  </div>
+
+  {:else}
+
+  <div class="text-3xl my-4 w-full">No Results Found</div>
+{/if}
