@@ -14,7 +14,6 @@
   // Fetch the image data and set the image URL when the component mounts
   onMount(async () => {
     try {
-      console.log("Mounted")
       const response = await fetch(`/api/view/${fileType}/${filename}`, { credentials: 'include' })
       
       if (!response.ok) {

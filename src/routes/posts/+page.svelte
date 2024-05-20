@@ -1,285 +1,63 @@
 <script>
   import { enhance } from '$app/forms';
-  import searchIcon from '$lib/assets/icons/search.svg';
+  import searchIcon from '$lib/assets/icons/searchWhite.svg';
   import UserPost from '$lib/components/UserPost.svelte';
+  // import getCookie from '$lib/helpers/getClientCookies';
   export let form
 
-  /* ------------------------------ Testing data ------------------------------ */
 
-  /* const testData = [{
-    title: 'Test Title',
-    description: 'Test Content',
-    date: "2024-05-17T21:09:46.708Z",
-    videos: [{
-      "_id": {
-        "$oid": "662f4eb06b18c12a5ba46d2d"
-      },
-      "title": "compressed.mp4",
-      "filename": "compressed.mp4",
-      "uploader": {
-        "$oid": "662da4624816d6ff7c8a8f1d"
-      },
-      "comments": [],
-      "tags": [],
-      "privacy": "Private",
-      "voteCount": 0,
-      "fileId": "662f4eb06b18c12a5ba46cc6",
-      "date": {
-        "$date": "2024-04-29T07:39:28.946Z"
-      },
-      "votes": [],
-      "createdAt": {
-        "$date": "2024-04-29T07:39:28.955Z"
-      },
-      "updatedAt": {
-        "$date": "2024-04-29T07:39:28.955Z"
-      },
-      "__v": 0
-    },
-  ],
-    images: [{
-      "_id": {
-        "$oid": "662e0b8b416ec6ba09b67e06"
-      },
-      "filename": "2024-04-20-030944.jpg",
-      "uploader": {
-        "$oid": "662da4624816d6ff7c8a8f1d"
-      },
-      "comments": [],
-      "voteCount": 0,
-      "tags": [],
-      "privacy": "Private",
-      "date": {
-        "$date": "2024-04-28T08:40:43.204Z"
-      },
-      "votes": [],
-      "createdAt": {
-        "$date": "2024-04-28T08:40:43.214Z"
-      },
-      "updatedAt": {
-        "$date": "2024-04-28T08:40:43.214Z"
-      },
-      "__v": 0
-    }],
-    audios: [{
-      "_id": {
-        "$oid": "6642c7292988c311fe06367c"
-      },
-      "date": {
-        "$date": "2024-05-13T00:00:00.000Z"
-      },
-      "title": "Free_Test_Data_10MB_WAV.wav",
-      "filename": "Free_Test_Data_10MB_WAV.wav",
-      "uploader": {
-        "$oid": "662da4624816d6ff7c8a8f1d"
-      },
-      "comments": [],
-      "tags": [],
-      "privacy": "Private",
-      "voteCount": 0,
-      "fileId": "6642c7292988c311fe063652",
-      "votes": [],
-      "createdAt": {
-        "$date": "2024-05-14T02:06:33.901Z"
-      },
-      "updatedAt": {
-        "$date": "2024-05-14T02:06:33.901Z"
-      },
-      "__v": 0
-    }],
-    journals: [],
-    tags: ['tag1', 'tag2'],
-    comments: [],
-    privacy: 'Private',
+  // TODO: Currently when you load the page no posts show up, you have to press the search button to get posts
+  /* async function fetchInitialPosts() {
+    const response = await fetch('/api/search/posts', {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": getCookie(document, "media_authentication")
+      }
+    })
+    const data = await response.json()
+    // form = data
+  } */
 
-  },{
-    title: 'Test Title',
-    description: 'Test Content',
-    date: "2024-05-17T21:09:46.708Z",
-    videos: [{
-      "_id": {
-        "$oid": "662f4eb06b18c12a5ba46d2d"
-      },
-      "title": "compressed.mp4",
-      "filename": "compressed.mp4",
-      "uploader": {
-        "$oid": "662da4624816d6ff7c8a8f1d"
-      },
-      "comments": [],
-      "tags": [],
-      "privacy": "Private",
-      "voteCount": 0,
-      "fileId": "662f4eb06b18c12a5ba46cc6",
-      "date": {
-        "$date": "2024-04-29T07:39:28.946Z"
-      },
-      "votes": [],
-      "createdAt": {
-        "$date": "2024-04-29T07:39:28.955Z"
-      },
-      "updatedAt": {
-        "$date": "2024-04-29T07:39:28.955Z"
-      },
-      "__v": 0
-    },
-  ],
-    images: [{
-      "_id": {
-        "$oid": "662e0b8b416ec6ba09b67e06"
-      },
-      "filename": "2024-04-20-030944.jpg",
-      "uploader": {
-        "$oid": "662da4624816d6ff7c8a8f1d"
-      },
-      "comments": [],
-      "voteCount": 0,
-      "tags": [],
-      "privacy": "Private",
-      "date": {
-        "$date": "2024-04-28T08:40:43.204Z"
-      },
-      "votes": [],
-      "createdAt": {
-        "$date": "2024-04-28T08:40:43.214Z"
-      },
-      "updatedAt": {
-        "$date": "2024-04-28T08:40:43.214Z"
-      },
-      "__v": 0
-    }],
-    audios: [{
-      "_id": {
-        "$oid": "6642c7292988c311fe06367c"
-      },
-      "date": {
-        "$date": "2024-05-13T00:00:00.000Z"
-      },
-      "title": "Free_Test_Data_10MB_WAV.wav",
-      "filename": "Free_Test_Data_10MB_WAV.wav",
-      "uploader": {
-        "$oid": "662da4624816d6ff7c8a8f1d"
-      },
-      "comments": [],
-      "tags": [],
-      "privacy": "Private",
-      "voteCount": 0,
-      "fileId": "6642c7292988c311fe063652",
-      "votes": [],
-      "createdAt": {
-        "$date": "2024-05-14T02:06:33.901Z"
-      },
-      "updatedAt": {
-        "$date": "2024-05-14T02:06:33.901Z"
-      },
-      "__v": 0
-    }],
-    journals: [],
-    tags: ['tag1', 'tag2'],
-    comments: [],
-    privacy: 'Private',
-
-  },{
-    title: 'Test Title',
-    description: 'Test Content',
-    date: "2024-05-17T21:09:46.708Z",
-    videos: [{
-      "_id": {
-        "$oid": "662f4eb06b18c12a5ba46d2d"
-      },
-      "title": "compressed.mp4",
-      "filename": "compressed.mp4",
-      "uploader": {
-        "$oid": "662da4624816d6ff7c8a8f1d"
-      },
-      "comments": [],
-      "tags": [],
-      "privacy": "Private",
-      "voteCount": 0,
-      "fileId": "662f4eb06b18c12a5ba46cc6",
-      "date": {
-        "$date": "2024-04-29T07:39:28.946Z"
-      },
-      "votes": [],
-      "createdAt": {
-        "$date": "2024-04-29T07:39:28.955Z"
-      },
-      "updatedAt": {
-        "$date": "2024-04-29T07:39:28.955Z"
-      },
-      "__v": 0
-    },
-  ],
-    images: [{
-      "_id": {
-        "$oid": "662e0b8b416ec6ba09b67e06"
-      },
-      "filename": "2024-04-20-030944.jpg",
-      "uploader": {
-        "$oid": "662da4624816d6ff7c8a8f1d"
-      },
-      "comments": [],
-      "voteCount": 0,
-      "tags": [],
-      "privacy": "Private",
-      "date": {
-        "$date": "2024-04-28T08:40:43.204Z"
-      },
-      "votes": [],
-      "createdAt": {
-        "$date": "2024-04-28T08:40:43.214Z"
-      },
-      "updatedAt": {
-        "$date": "2024-04-28T08:40:43.214Z"
-      },
-      "__v": 0
-    }],
-    audios: [{
-      "_id": {
-        "$oid": "6642c7292988c311fe06367c"
-      },
-      "date": {
-        "$date": "2024-05-13T00:00:00.000Z"
-      },
-      "title": "Free_Test_Data_10MB_WAV.wav",
-      "filename": "Free_Test_Data_10MB_WAV.wav",
-      "uploader": {
-        "$oid": "662da4624816d6ff7c8a8f1d"
-      },
-      "comments": [],
-      "tags": [],
-      "privacy": "Private",
-      "voteCount": 0,
-      "fileId": "6642c7292988c311fe063652",
-      "votes": [],
-      "createdAt": {
-        "$date": "2024-05-14T02:06:33.901Z"
-      },
-      "updatedAt": {
-        "$date": "2024-05-14T02:06:33.901Z"
-      },
-      "__v": 0
-    }],
-    journals: [],
-    tags: ['tag1', 'tag2'],
-    comments: [],
-    privacy: 'Private',
-
-  }
-  ] */
+  // fetchInitialPosts()
+  // console.log(getCookie(document, "media_authentication"))
+  // console.log(Document)
 </script>
 
 <h1 class="text-3xl mb-2">Search Posts</h1>
-<!-- {#if !form.success && form.message}
+<!-- TODO: Add this back in when necessary -->
+<!-- {#if form?.message !== undefined }
   <p>{form.message}</p>
 {/if} -->
-<form class="flex bg-white p-2 border rounded" method="POST" action="?/searchPosts" use:enhance>
-  <label class="text-black flex items-center mr-2" for="search">
+<form class="grid grid-flow-row grid-cols-4 bg-white p-2 border rounded-xl gap-3" method="POST" action="?/searchPosts" use:enhance>
+  <label class="text-black flex items-center mr-2 col-span-1" for="title">
     Title:
-    <input type="text" id="search" name="title" value={form?.data.query.title || ''} placeholder="Search" class="w-full border border-gray-200 px-2 rounded text-black">
   </label>
+  <input type="text" id="title" name="title" value={form?.data.query.title || ''} placeholder="Concert at the park" class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3">
 
-  <button type="submit" class="ml-2">
-    <img src={searchIcon} alt="search button" class="w-9 h-9">
+  <label class="text-black flex items-center mr-2 col-span-1" for="description">
+    Description:
+  </label>
+  <input type="text" id="description" name="description" value={form?.data.query.description || ''} placeholder="Today was the day that..." class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3">
+
+  <label class="text-black flex items-center mr-2 col-span-1" for="tags">
+    Tags:
+  </label>
+  <input type="text" id="tags" name="tags" value={form?.data.query.tags || ''} placeholder="concert, music, party" class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3">
+
+  <label class="text-black flex items-center mr-2 col-span-1" for="startDate">
+    Start Date:
+  </label>
+  <input type="date" id="startDate" name="startDate" value={form?.data.query.startDate || ''} class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3">
+
+  <label class="text-black flex items-center mr-2 col-span-1" for="endDate">
+    End Date:
+  </label>
+  <input type="date" id="endDate" name="endDate" value={form?.data.query.endDate || ''} class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3">
+
+  <button type="submit" class="w-1/3 col-span-4 mx-auto text-white p-2 bg-blue-600 rounded text-center">
+    Search
+    <!-- <img src={searchIcon} alt="search button" class="w-6 h-6"> -->
   </button>
 </form>
 
@@ -289,7 +67,7 @@
 <!-- Post container -->
 {#if form && form.data.searchResults}
   <div class="text-3xl my-4 w-full">Search Count: {form?.data.postCount}</div>
-  <div class="grid grid-cols-3 grid-flow-row gap-6">
+  <div class="grid grid-cols-4 grid-flow-row gap-6 mb-8">
     {#each form.data.searchResults as post}
       <UserPost postData={post}/>
     {/each}

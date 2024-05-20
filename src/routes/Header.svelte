@@ -1,7 +1,7 @@
 <script>
   import HamburgerMenu from '$lib/components/HamburgerMenu.svelte';
   
-  import searchIcon from '$lib/assets/icons/search.svg';
+  import searchIcon from '$lib/assets/icons/searchBlack.svg';
   import filterIcon from '$lib/assets/icons/filter.svg';
   
   import { writable } from 'svelte/store';

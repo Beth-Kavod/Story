@@ -1,4 +1,6 @@
 <script>
+  // Replace with SVG when possible
+  import DefaultUser from '$lib/assets/icons/DefaultUser.png'
   export let postData
 </script>
 
@@ -8,8 +10,8 @@
 
 <div class="text-black border-4 bg-white border-primary rounded-xl min-w-min w-64 h-fit">
   <div class="w-full h-min border-b-2 p-2 border-black flex justify-between">
-    <div class="w-min bg-gray-300 px-2 rounded text-lg flex items-center">{new Date(postData.date).toLocaleDateString()}</div>
-    <details class="w-min list-none mr-2 text-sm flex flex-wrap gap-1 justify-center">
+    <div class="w-min bg-gray-300 px-2 rounded text-lg flex items-center justify-center">{new Date(postData.date).toLocaleDateString()}</div>
+    <details class="w-min list-none text-sm flex gap-1 align-middle">
       <summary id="tag-dropdown" class="flex">
         <li>Tags</li>
         <div>({postData.tags.length})</div>
@@ -20,15 +22,23 @@
         {/each}
       </div>
     </details>
+    <div>
+      <a href="/profile/{postData.user}">
+        <!-- Users don't have an avatar yet, replace when users do -->
+        <img src={DefaultUser} alt="profile" class="w-8 h-8 rounded-full">
+      </a>
+    </div>
   </div>
   
   <div class="border-b-2 border-black flex flex-col min-h-fit w-full">
     <p class="text-xl ml-2">{postData.title}</p>
   </div>
   
-  <div class="border-b-2 border-black flex flex-col min-h-fit w-full">
-    <p class="text-sm ml-2">{postData.description}</p>
-  </div>
+  {#if postData.description}
+    <div class="border-b-2 border-black flex flex-col min-h-fit w-full">
+      <p class="text-sm ml-2">{postData.description}</p>
+    </div>
+  {/if}
 
   {#if postData.images}
   <details class="border-b-2 border-black flex flex-col min-h-fit w-full">
@@ -36,7 +46,7 @@
       <li>Images</li>
       <div class="mr-2 text-gray-500">({postData.images.length})</div>
     </summary>
-    <div class="ml-2 mt-1 w-60 h-min grid grid-cols-1 grid-flow-row gap-1">
+    <div class="ml-2 mt-0 w-56 h-min grid grid-cols-1 grid-flow-row gap-1">
       {#each postData.images as image}
         <fieldset class="w-full">
           <legend>{image.title}</legend>
@@ -54,7 +64,7 @@
       <li>Videos</li>
       <div class="mr-2 text-gray-500">({postData.videos.length})</div>
     </summary>
-    <div class="m-2 mt-1 w-56 h-min grid grid-cols-1 grid-flow-row gap-1">
+    <div class="m-2 mt-0 w-56 h-min grid grid-cols-1 grid-flow-row gap-1">
       {#each postData.videos as video}
         <fieldset class="w-full">
           <legend>{video.title}</legend>
@@ -74,7 +84,7 @@
       <li>Audios</li>
       <div class="mr-2 text-gray-500">({postData.audios.length})</div>
     </summary>
-    <div class="ml-1 mt-1 w-60 h-min grid grid-cols-1 grid-flow-row gap-1">
+    <div class="m-2 mt-0 w-56 h-min grid grid-cols-1 grid-flow-row gap-1">
       {#each postData.audios as audio}
         <fieldset class="w-full">
           <legend>{audio.title}</legend>
@@ -96,18 +106,18 @@
         <div class="mr-2 text-gray-500">({postData.journal.length})</div>
       </summary>
 
-      <table border=1 class="w-full mb-2 border-2 border-black border-collapse">
+      <table border=1 class="w-full border-t-2 border-black border-collapse">
         <thead>
           <tr>
-            <th class="border border-slate-700">Time</th>
-            <th class="border border-slate-700">Entry</th>
+            <th class="border border-slate-700 border-l-0">Time</th>
+            <th class="border border-slate-700 border-r-0">Entry</th>
           </tr>
         </thead>
         <tbody>
           {#each postData.journal as note}
             <tr>
-              <td class="text-center border border-slate-700">{note.time}</td>
-              <td class="text-center break-inside-avoid-column border border-slate-700">{note.entry}</td>
+              <td class="text-center border border-slate-700 border-l-0 border-b-0">{note.time}</td>
+              <td class="text-center break-inside-avoid-column border border-slate-700 border-r-0 border-b-0">{note.entry}</td>
             </tr>
           {/each}
         </tbody>

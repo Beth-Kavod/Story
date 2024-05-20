@@ -1,14 +1,11 @@
 <script>
+  import { showModal, selectedMedia, mediaType, selectableMedia } from '$lib/stores/mediaModal';
+  import { onMount } from 'svelte';
+  import getCookie from '$lib/helpers/getClientCookies';
+  import MediaModal from '$lib/components/MediaModal.svelte';
+
   export let form
 
-  /* -------------------------------- Add media ------------------------------- */
-
-  let selectedImages = [], selectedVideos = [], selectedAudios = []
-
-  function addMediaField() {
-    
-  }
-  
   /* ---------------------------- Tag functionality --------------------------- */
 
   let selectedTags = [];
@@ -25,6 +22,26 @@
   function removeTag(tag) {
     selectedTags = selectedTags.filter(t => t !== tag);
   }
+
+  /* -------------------------------- Add media ------------------------------- */
+
+  async function getFileOptions() {
+    const fileRequest = await fetch('/api/user/media-titles', {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": getCookie(document, "media_authentication")
+      }
+    }) 
+
+    const response = await fileRequest.json()
+
+    return response.data
+  }
+
+  onMount(async () => {
+    $selectableMedia = await getFileOptions()
+  })
 </script>
 
 <h1 class="text-6xl my-8">Upload post</h1>
@@ -46,7 +63,11 @@
 
     <input id="description" type="text" name="description" class="p-1 border-b-2 col-span-3 border-gray-300">
 
-    <button on:click={event => { addMediaField(); event.preventDefault() }}>Add media</button>
+    <p class="text-lg col-span-1 text-start">Add Media:</p>
+    <button class="col-span-1 text-lg" on:click={event => { event.preventDefault(); showModal.set(true); mediaType.set('images') }}>Images ({$selectedMedia.images.length})</button>  
+    <button class="col-span-1 text-lg" on:click={event => { event.preventDefault(); showModal.set(true); mediaType.set('videos') }}>Videos ({$selectedMedia.videos.length})</button>  
+    <button class="col-span-1 text-lg" on:click={event => { event.preventDefault(); showModal.set(true); mediaType.set('audios') }}>Audios ({$selectedMedia.audios.length})</button>  
+    <MediaModal showModal mediaType selectedMedia={[]}/>
 
     <label for="privacy" class=" text-lg">
       Privacy:
@@ -76,12 +97,11 @@
     </label>
       <input id="date" type="date" name="date" class="w-fit p-1 col-span-3 mb-4" required>
     
-    <!-- Hidden input field to store the selectedTags array in FormData for request -->
+    <!-- Hidden input fields to store the arrays in FormData for request -->
     <input type="hidden" name="tags" bind:value={selectedTags}>
-
-    <input type="hidden" name="images" bind:value={selectedImages}>
-    <input type="hidden" name="videos" bind:value={selectedVideos}>
-    <input type="hidden" name="audios" bind:value={selectedAudios}>
+    <input type="hidden" name="images" bind:value={$selectedMedia.images}>
+    <input type="hidden" name="videos" bind:value={$selectedMedia.videos}>
+    <input type="hidden" name="audios" bind:value={$selectedMedia.audios}>
     
     {#if selectedTags.length > 0}
       <div>
