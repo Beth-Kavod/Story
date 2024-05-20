@@ -45,14 +45,14 @@ To get started with the Template File Sharing App, follow these steps:
     yarn install
     ```
 
-3. **Set up environment variables:**
-    Create a `.env` file in the root directory and add the following:
+3. **Clone and setup the Express media server to run as well:**
+    Go to https://github.com/Niko-Drossos/Express-Media-Storage.git and complete the instructions there to setup the server.
+
+4. **Set up environment variables:**
+    Create a `.env` file in the root directory and add the following to connect to the Express media server:
     ```env
     ApiHostname = "http://localhost/3000"
     ```
-
-4. **Clone and setup the media server to run as well:**
-    Go to https://github.com/Niko-Drossos/Express-Media-Storage.git and complete the instructions there to setup the server
 
 5. **Start the application:**
     ```bash
