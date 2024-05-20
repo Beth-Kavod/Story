@@ -4,6 +4,7 @@
   import getCookie from '$lib/helpers/getClientCookies';
   import MediaModal from '$lib/components/MediaModal.svelte';
 
+  export let data
   export let form
 
   /* ---------------------------- Tag functionality --------------------------- */
@@ -16,6 +17,10 @@
     if (tagInput && !selectedTags.includes(tagInput)) {
       selectedTags = [...selectedTags, tagInput];
       tagElement.value = ''; // Clear the input field
+    } else if (!tagInput) {
+      alert('Please enter a tag into the input box.');
+    } else {
+      alert('Tag already added to post.');
     }
   }
 
@@ -23,25 +28,19 @@
     selectedTags = selectedTags.filter(t => t !== tag);
   }
 
+  onMount(() => {
+    const tagInput = document.getElementById('tags');
+    tagInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        addTag('tags');
+      }
+    });
+  });
+
   /* -------------------------------- Add media ------------------------------- */
 
-  async function getFileOptions() {
-    const fileRequest = await fetch('/api/user/media-titles', {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "x-access-token": getCookie(document, "media_authentication")
-      }
-    }) 
-
-    const response = await fileRequest.json()
-
-    return response.data
-  }
-
-  onMount(async () => {
-    $selectableMedia = await getFileOptions()
-  })
+  selectableMedia.set(data)
 </script>
 
 <h1 class="text-6xl my-8">Upload post</h1>
@@ -63,11 +62,16 @@
 
     <input id="description" type="text" name="description" class="p-1 border-b-2 col-span-3 border-gray-300">
 
+    <label for="date" class=" text-lg">
+      <p class="w-1/4">Date:</p>
+    </label>
+    <input id="date" type="date" name="date" class="w-fit p-1 col-span-3" required>
+    
     <p class="text-lg col-span-1 text-start">Add Media:</p>
     <button class="col-span-1 text-lg" on:click={event => { event.preventDefault(); showModal.set(true); mediaType.set('images') }}>Images ({$selectedMedia.images.length})</button>  
     <button class="col-span-1 text-lg" on:click={event => { event.preventDefault(); showModal.set(true); mediaType.set('videos') }}>Videos ({$selectedMedia.videos.length})</button>  
     <button class="col-span-1 text-lg" on:click={event => { event.preventDefault(); showModal.set(true); mediaType.set('audios') }}>Audios ({$selectedMedia.audios.length})</button>  
-    <MediaModal showModal mediaType selectedMedia={[]}/>
+    <MediaModal />
 
     <label for="privacy" class=" text-lg">
       Privacy:
@@ -89,14 +93,9 @@
         <option value="tag1">Tag 1</option>
         <option value="tag2">Tag 2</option>
       </datalist>
-      <button class="text-primary font-semibold bg-white p-1 text-2xl" on:click={event => { addTag(`tags$`); event.preventDefault() }}>+</button>
+      <button class="text-primary font-semibold bg-white p-1 text-2xl" on:click={event => { addTag(`tags`); event.preventDefault() }}>+</button>
     </div>
 
-    <label for="date" class=" text-lg">
-      <p class="w-1/4">Date:</p>
-    </label>
-      <input id="date" type="date" name="date" class="w-fit p-1 col-span-3 mb-4" required>
-    
     <!-- Hidden input fields to store the arrays in FormData for request -->
     <input type="hidden" name="tags" bind:value={selectedTags}>
     <input type="hidden" name="images" bind:value={$selectedMedia.images}>
@@ -104,7 +103,7 @@
     <input type="hidden" name="audios" bind:value={$selectedMedia.audios}>
     
     {#if selectedTags.length > 0}
-      <div>
+      <div class="col-span-4">
         Selected Tags:
         <ul>
           {#each selectedTags as tag}

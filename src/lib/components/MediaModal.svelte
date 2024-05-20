@@ -33,12 +33,14 @@
     console.log($selectedMedia)
   }
 
+  // Allow filtering of media in the modal
   function filterMedia(event) {
     const filter = event.target.value;
     filteredMedia = $selectableMedia[$mediaType].filter(option => new RegExp(filter, 'i').test(option.title.toLowerCase()))
   }
 
-  onMount(() => {
+    
+  $: mediaType.subscribe(() => {
     const mediaSelect = get(selectableMedia);
     const filterMediaType = get(mediaType);
     
@@ -52,20 +54,26 @@
       <h2 class="text-xl font-bold mb-4">Select {get(mediaType)}</h2>
       
       <form>
-        <input type="text" name="filter" value="" on:input={event => filterMedia(event)} class="bg-gray-300" />
-        {#each filteredMedia as option}
+        Search: 
+        <input type="text" name="filter" value="" on:input={event => filterMedia(event)} class="bg-white border-gray-300 border-b-2 col-span-3" />
+        <div class="max-h-40 h-64 overflow-y-scroll">
+          {#each filteredMedia as option}
           <div class="mb-2">
-            <label class="inline-flex items-center">
-              <input 
-                type="checkbox" 
-                class="form-checkbox"
-                checked={$selectedMedia[$mediaType].includes(option._id)}
-                on:change={() => toggleOption(option._id)} 
-              />
-              <span class="ml-2">{option.title}</span>
+            <label class="w-full inline-flex justify-between">
+              <div>
+                <input
+                  type="checkbox"
+                  class="form-checkbox"
+                  checked={$selectedMedia[$mediaType].includes(option._id)}
+                  on:change={() => toggleOption(option._id)}
+                />
+                <span class="ml-2">{option.title}</span>
+              </div>
+              <span class="ml-2">{new Date(option.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
             </label>
           </div>
-        {/each}
+          {/each}
+        </div>
       </form>
       
       <div class="mt-4 flex justify-end">
