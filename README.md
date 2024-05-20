@@ -19,7 +19,6 @@ Welcome to story! This application allows users to easily upload, share, and man
 ## Features
 - **User Authentication**: Secure user login and registration.
 - **File Upload**: Upload files of various formats.
-- **File Sharing**: Share files via unique links.
 - **File Management**: Organize files into posts.
 - **Access Control**: Set permissions for file access.
 - **Responsive Design**: Use the app on any device.
@@ -76,9 +75,6 @@ Once the application is running, you can perform the following actions:
 
 3. **Upload Files:**
    - Navigate to the upload section and select files to upload.
-
-4. **Share Files:**
-   - Generate shareable links for uploaded files.
 
 5. **Manage Posts:**
    - Organize files into posts and set access permissions.

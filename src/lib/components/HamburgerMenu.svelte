@@ -53,9 +53,9 @@
         <div class="text-gray-800 block pl-4 pr-8 py-2 bg-gray-300">View</div>
         <a href="/posts" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="menu-item-4">Posts</a>
         <!-- TODO: make these routes -->
-        <a href="/view/images" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="menu-item-4">Images</a>
+        <!-- <a href="/view/images" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="menu-item-4">Images</a>
         <a href="/view/videos" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="menu-item-4">Videos</a>
-        <a href="/view/audios" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="menu-item-4">Audios</a>
+        <a href="/view/audios" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="menu-item-4">Audios</a> -->
       </div>
       <div class="" role="none">
         <div class="text-gray-800 block pl-4 pr-8 py-2 bg-gray-300" role="menuitem">Upload</div>
