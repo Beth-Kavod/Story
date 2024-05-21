@@ -1,17 +1,6 @@
-# Hadden
-- Upload post form fields:
-- Description (textarea)
-- Tags (Copy the tag handler from the upload form)
-- Also add Images, Videos, and Audios as separate select menus but don't worry about the options yet
-
-Once your done with the form, work on the post page and style the component UserPost.svelte to look like the Figma.
-For the time being you can omit the journal section
-
-
-- Create view/images?videos?audios routes
-
-
 # ToDo
+- Fix upload post form to actually work, its not sending data
+- Create view/images?videos?audios routes
 - Add journal entries route
 - Fix bug where the my-files load action happens when you click on the hamburger menu
 - Create filters for searching

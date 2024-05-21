@@ -16,54 +16,63 @@
   }
 </script>
 
-<label for="files{index}" class="mb-2 flex justify-between items-center text-lg">
-  Upload:
-  <input class="text-sm text-gray-900 rounded cursor-pointer bg-gray-50 focus:outline-none"  id="file{index}" type="file" name="file{index}" required>
-</label>
-<label for="date{index}" class="mb-2 flex justify-between items-center text-lg">
-  Date:
-  <input id="date{index}" type="date" name="date{index}" class="p-1 border-4 border-slate-500 border-l-slate-700 border-t-slate-700 rounded" required>
-</label>
-<label for="title{index}" class="mb-2 flex justify-between items-center text-lg">
-  Title:
-  <input id="title{index}" type="text" name="title{index}" class="p-1 border-4 border-slate-500 border-l-slate-700 border-t-slate-700 rounded">
-</label>
-<label for="description{index}" class="mb-2 flex justify-between items-center text-lg">
-  Description:
-  <input id="description{index}" type="text" name="description{index}" class="p-1 border-4 border-slate-500 border-l-slate-700 border-t-slate-700 rounded">
-</label>
-<label for="privacy{index}" class="mb-2 flex justify-between items-center text-lg">
-  Privacy:
-  <select id="privacy{index}" name="privacy{index}" class="p-1 border-4 border-slate-500 border-l-slate-700 border-t-slate-700 rounded">
+<div class="grid grid-flow-row grid-cols-4 col-span-4 gap-y-2">
+  <label for="files{index}" class="text-black flex items-center mr-2 col-span-1">
+    Upload:
+  </label>
+  <input class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3"  id="file{index}" type="file" name="file{index}" required>
+  
+  <label for="date{index}" class="text-black flex items-center mr-2 col-span-1">
+    Date:
+  </label>
+  <input id="date{index}" type="date" name="date{index}" class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3" required>
+  
+  <label for="title{index}" class="text-black flex items-center mr-2 col-span-1">
+    Title:
+  </label>
+  <input id="title{index}" type="text" name="title{index}" class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3">
+  
+  <label for="description{index}" class="text-black flex items-center mr-2 col-span-1">
+    Description:
+  </label>
+  <input id="description{index}" type="text" name="description{index}" class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3">
+  
+  <label for="privacy{index}" class="text-black flex items-center mr-2 col-span-1">
+    Privacy:
+  </label>
+  <select id="privacy{index}" name="privacy{index}" class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3">
     <option value="Private">Private</option>
     <option value="Public">Public</option>
     <option value="Unlisted">Unlisted</option>
   </select>
-</label>
-<label for="tags{index}" class="mb-2 flex justify-between items-center text-lg">
-  Add Tags:
-  <input list="knownTags" id="tags{index}" type="text" class="mx-1 p-1 border-4 border-slate-500 border-l-slate-700 border-t-slate-700 rounded">
-  <datalist id="knownTags">
-    <!-- TODO: Add more tags -->
-    <option value="tag1">Tag 1</option>
-    <option value="tag2">Tag 2</option>
-  </datalist>
-  <button class="text-primary font-semibold bg-white p-1 border-4 border-slate-500 border-l-slate-700 border-t-slate-700 rounded" on:click={event => { addTag(`tags${index}`); event.preventDefault() }}>Add</button>
-</label>
-
-<!-- Hidden input field to store the selectedTags array in FormData for request -->
-<input type="hidden" name="tags{index}" bind:value={selectedTags}>
-
-{#if selectedTags.length > 0}
-  <div>
-    Selected Tags:
-    <ul>
-      {#each selectedTags as tag}
-        <li>
-          {tag}
-          <button class="text-red-500" on:click={event => { removeTag(tag); event.preventDefault() }}>Remove</button>
-        </li>
-      {/each}
-    </ul>
-  </div>
-{/if}
+  
+  <label for="tags{index}" class="text-black flex items-center mr-2 col-span-1">
+    Add Tags:
+  </label>
+    <div class="col-span-3">
+      <input list="knownTags" id="tags{index}" type="text" class="mx-1 p-1 border-b-2 border-gray-300 text-black">
+      <datalist id="knownTags">
+        <!-- TODO: Add more tags -->
+        <option value="tag1">Tag 1</option>
+        <option value="tag2">Tag 2</option>
+      </datalist>
+      <button class="text-primary font-semibold bg-white p-1 text-2xl" on:click={event => { addTag(`tags${index}`); event.preventDefault() }}>+</button>
+    </div>
+  
+  <!-- Hidden input field to store the selectedTags array in FormData for request -->
+  <input type="hidden" name="tags{index}" bind:value={selectedTags}>
+  
+  {#if selectedTags.length > 0}
+    <div class="col-span-4">
+      Selected Tags:
+      <ul>
+        {#each selectedTags as tag}
+          <li>
+            {tag}
+            <button class="text-red-500" on:click={event => { removeTag(tag); event.preventDefault() }}>Remove</button>
+          </li>
+        {/each}
+      </ul>
+    </div>
+  {/if}
+</div>

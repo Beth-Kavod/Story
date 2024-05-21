@@ -64,7 +64,7 @@
       <li>Videos</li>
       <div class="mr-2 text-gray-500">({postData.videos.length})</div>
     </summary>
-    <div class="m-2 mt-0 w-56 h-min grid grid-cols-1 grid-flow-row gap-1">
+    <div class="ml-2 mt-0 w-56 h-min grid grid-cols-1 grid-flow-row gap-1">
       {#each postData.videos as video}
         <fieldset class="w-full">
           <legend>{video.title}</legend>
@@ -84,7 +84,7 @@
       <li>Audios</li>
       <div class="mr-2 text-gray-500">({postData.audios.length})</div>
     </summary>
-    <div class="m-2 mt-0 w-56 h-min grid grid-cols-1 grid-flow-row gap-1">
+    <div class="ml-2 mt-0 w-56 h-min grid grid-cols-1 grid-flow-row gap-1">
       {#each postData.audios as audio}
         <fieldset class="w-full">
           <legend>{audio.title}</legend>

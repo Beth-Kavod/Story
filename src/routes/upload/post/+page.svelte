@@ -50,7 +50,7 @@
 {/if}
 
 <div class=" bg-white shadow rounded-xl w-full p-6">
-  <form method="POST" action="?/uploadFiles" enctype="multipart/form-data"  class="grid grid-cols-4 text-black gap-3">
+  <form method="POST" action="?/uploadPost" enctype="multipart/form-data"  class="grid grid-cols-4 text-black gap-3">
     <label for="title" class="text-lg flex">
       Title:
     </label>

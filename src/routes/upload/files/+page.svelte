@@ -22,11 +22,13 @@
   <p class={`text-xl text-center mb-4 ${form.success ? 'text-primary' : 'text-error'}`}>{form.message}</p>
 {/if}
 
-<div class="border-4 bg-secondary border-slate-500 rounded-xl mt-12 p-6">
-  <form method="POST" action="?/uploadFiles" enctype="multipart/form-data"  class="flex flex-col text-black gap-y-2">
+<div class="bg-white p-2 border rounded-xl gap-3">
+  <form method="POST" action="?/uploadFiles" enctype="multipart/form-data"  class="grid-cols-4 text-black gap-y-2 grid grid-flow-row">
     {#each $forms as form, index (index)}
+      {#if index > 0}
+        <div class="border-b-2 border-black col-span-4" />
+      {/if}
       <UploadFileForm index={index} />
-      <hr>
     {/each}
     <button type="submit" class="bg-blue-600 text-white rounded-sm">Submit</button>
   </form>
