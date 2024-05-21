@@ -1,6 +1,11 @@
+import { redirect } from '@sveltejs/kit'
 import { ApiHostname } from '$env/static/private'
 
-/* export const load = async ({ fetch, cookies }) => {
+export const load = async ({ fetch, cookies }) => {
+  if (!cookies.get('media_authentication')) {
+    throw redirect(307, '/auth/login')
+  }
+
   const response = await fetch(`${ApiHostname}/posts`, {
     method: 'GET',
     headers: {
@@ -9,9 +14,9 @@ import { ApiHostname } from '$env/static/private'
     }
   })
   const data = await response.json()
-  console.log(data)
+
   return data
-} */
+}
 
 export const actions = {
   searchPosts: async ({ request, cookies }) => {

@@ -1,7 +1,4 @@
-# Template File Sharing App README
-
-## Project Name
-Story
+# Story
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -14,7 +11,7 @@ Story
 8. [Contact](#contact)
 
 ## Introduction
-Welcome to story! This application allows users to easily upload, share, and manage files in a secure and efficient manner. It is designed to be user-friendly and scalable, suitable for both personal and professional use.
+Welcome to **Story**! This application allows users to easily upload, share, and manage files in a secure and efficient manner. It is designed to be user-friendly and scalable, suitable for both personal and professional use.
 
 ## Features
 - **User Authentication**: Secure user login and registration.
@@ -24,7 +21,7 @@ Welcome to story! This application allows users to easily upload, share, and man
 - **Responsive Design**: Use the app on any device.
 
 ## Installation
-To get started with the Template File Sharing App, follow these steps:
+To get started with **Story** follow these steps:
 
 ### Prerequisites
 - Node.js (version 14.x or higher)
@@ -34,8 +31,8 @@ To get started with the Template File Sharing App, follow these steps:
 ### Steps
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/template-file-sharing-app.git
-    cd template-file-sharing-app
+    git clone https://github.com/Beth-Kavod/Story.git
+    cd Story
     ```
 
 2. **Install dependencies:**
@@ -47,12 +44,15 @@ To get started with the Template File Sharing App, follow these steps:
 
 3. **Clone and setup the Express media server to run as well:**
     Go to https://github.com/Niko-Drossos/Express-Media-Storage.git and complete the instructions there to setup the server.
+    After you configure the server, start it with ```npm run dev```
 
 4. **Set up environment variables:**
+    The majority of the setup is run on the backend, Story is just the way to view and update the data. 
     Create a `.env` file in the root directory and add the following to connect to the Express media server:
     ```env
     ApiHostname = "http://localhost/3000"
     ```
+    ApiHostname is the url of a running instance of the **Express-Media-Storage** repository.
 
 5. **Start the application:**
     ```bash
@@ -97,13 +97,13 @@ We welcome contributions from the community! If you'd like to contribute, please
 
 Please ensure all pull requests adhere to the contribution guidelines and include relevant tests.
 
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+<!-- ## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details. -->
 
 ## Contact
 For any inquiries or feedback, please contact us at:
 - **Email**: droniko777@gmail.com
 - **Email**: nhadde445@west-mec.org
-- **GitHub Issues**: [GitHub Issues](https://github.com/yourusername/template-file-sharing-app/issues)
+- **GitHub Issues**: [GitHub Issues](https://github.com/Beth-Kavod/Story/issues)
 
 Thank you for using **Story**!

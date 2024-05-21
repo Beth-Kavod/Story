@@ -1,4 +1,11 @@
+import { redirect } from '@sveltejs/kit'
 import { ApiHostname } from '$env/static/private'
+
+export const load = async ({ fetch, cookies }) => {
+  if (!cookies.get('media_authentication')) {
+    throw redirect(307, '/auth/login')
+  }
+}
 
 export const actions = {
   uploadFiles: async ({ request, cookies }) => {

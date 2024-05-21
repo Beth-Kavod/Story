@@ -1,8 +1,9 @@
 {
 	"name": "svelte-story",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"private": true,
 	"scripts": {
+		"start": "npm run dev",
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",

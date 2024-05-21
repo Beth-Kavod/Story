@@ -45,32 +45,32 @@
     <div transition:fly="{{ y: -10, duration: 150 }}"  class="absolute right-0 z-10 mt-2 w-fit origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
       <div class="border-t border-gray-200 rounded" role="none">
         <div class="text-gray-800 block pl-4 pr-16 py-2 bg-gray-300 w-full rounded-t">Account</div>
-        <a href="/" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="home">Home</a>
-        <a href="/profile" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="profile">Profile</a>
-        <a href="/my-files" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="myFiles">My Files</a>
+        <a href="/" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="home">Home</a>
+        <a href="/profile" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="profile">Profile</a>
+        <a href="/my-files" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="myFiles">My Files</a>
         <!-- TODO: add in this page -->
-        <!-- <a href="/my-posts" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="myFiles">My posts</a> -->
+        <!-- <a href="/my-posts" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="myFiles">My posts</a> -->
       </div>
       <div class="" role="none">
         <div class="text-gray-800 block pl-4 pr-8 py-2 bg-gray-300">View</div>
-        <a href="/posts" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="menu-item-4">Posts</a>
+        <a href="/posts" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="menu-item-4">Posts</a>
         <!-- TODO: make these routes -->
-        <!-- <a href="/view/images" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="menu-item-4">Images</a>
-        <a href="/view/videos" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="menu-item-4">Videos</a>
-        <a href="/view/audios" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="menu-item-4">Audios</a> -->
+        <!-- <a href="/view/images" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="menu-item-4">Images</a>
+        <a href="/view/videos" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="menu-item-4">Videos</a>
+        <a href="/view/audios" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="menu-item-4">Audios</a> -->
       </div>
       <div class="" role="none">
         <div class="text-gray-800 block pl-4 pr-8 py-2 bg-gray-300" role="menuitem">Upload</div>
-        <a href="/upload/files" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="menu-item-4">Files</a>
-        <a href="/upload/post" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="menu-item-4">Post</a>
+        <a href="/upload/files" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="menu-item-4">Files</a>
+        <a href="/upload/post" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="menu-item-4">Post</a>
         <!-- TODO: Add this later -->
-        <!-- <a href="/upload/journal" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="menu-item-4">Journal entry</a> -->
+        <!-- <a href="/upload/journal" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="menu-item-4">Journal entry</a> -->
       </div>
       <div class="" role="none">
         <div class="text-gray-800 block pl-4 pr-8 py-2 bg-gray-300">Auth</div>
-        <a href="/auth/login" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="login">Login</a>
-        <a href="/auth/register" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300" role="menuitem" tabindex="-1" id="register">Register</a>
-        <a href="/auth/logout" on:click={logout}  class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-300 hover:rounded-b rounded-b" role="menuitem" tabindex="-1" id="logout">Logout</a>
+        <a href="/auth/login" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="login">Login</a>
+        <a href="/auth/register" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200" role="menuitem" tabindex="-1" id="register">Register</a>
+        <a href="/auth/logout" on:click={logout}  class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200 hover:rounded-b rounded-b" role="menuitem" tabindex="-1" id="logout">Logout</a>
       </div>
     </div>
   {/if}

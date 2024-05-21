@@ -1,27 +1,7 @@
 <script>
   import { enhance } from '$app/forms';
-  import searchIcon from '$lib/assets/icons/searchWhite.svg';
   import UserPost from '$lib/components/UserPost.svelte';
-  // import getCookie from '$lib/helpers/getClientCookies';
   export let form
-
-
-  // TODO: Currently when you load the page no posts show up, you have to press the search button to get posts
-  /* async function fetchInitialPosts() {
-    const response = await fetch('/api/search/posts', {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "x-access-token": getCookie(document, "media_authentication")
-      }
-    })
-    const data = await response.json()
-    // form = data
-  } */
-
-  // fetchInitialPosts()
-  // console.log(getCookie(document, "media_authentication"))
-  // console.log(Document)
 </script>
 
 <h1 class="text-6xl my-8">Search Posts</h1>
