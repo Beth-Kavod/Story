@@ -24,7 +24,7 @@
   // console.log(Document)
 </script>
 
-<h1 class="text-3xl mb-2">Search Posts</h1>
+<h1 class="text-6xl my-8">Search Posts</h1>
 <!-- TODO: Add this back in when necessary -->
 <!-- {#if form?.message !== undefined }
   <p>{form.message}</p>

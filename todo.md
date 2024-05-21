@@ -1,4 +1,5 @@
 # ToDo
+- Make the searching API take in a page parameter 
 - Fix upload post form to actually work, its not sending data
 - Create view/images?videos?audios routes
 - Add journal entries route

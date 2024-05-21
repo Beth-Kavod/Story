@@ -22,7 +22,6 @@ export const actions = {
     const uploadRequest = await fetch(`${ApiHostname}/post/create`, {
       method: 'POST',
       headers: {
-        "Content-Type": "multipart/form-data",
         'x-access-token': cookies.get('media_authentication')
       },
       body: formData
@@ -39,7 +38,7 @@ export const actions = {
 
     return {
       success: false,
-      message: response?.errorMessage
+      message: response?.errorMessage || response.message
     }
   }
 }

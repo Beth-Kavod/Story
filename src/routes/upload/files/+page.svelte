@@ -16,7 +16,7 @@
   addForm()
 </script>
 
-<h1 class="text-6xl mt-8">Upload files</h1>
+<h1 class="text-6xl my-8">Upload files</h1>
 
 {#if form?.message}
   <p class={`text-xl text-center mb-4 ${form.success ? 'text-primary' : 'text-error'}`}>{form.message}</p>
@@ -30,7 +30,7 @@
       {/if}
       <UploadFileForm index={index} />
     {/each}
-    <button type="submit" class="bg-blue-600 text-white rounded-sm">Submit</button>
+    <button class="text-black col-start-2 col-span-2 border-2 rounded hover:bg-slate-100" on:click={event => { event.preventDefault(); addForm() }}>Add more files +</button>
+    <button type="submit" class="bg-blue-600 text-white rounded-sm col-start-2 col-span-2">Submit</button>
   </form>
-  <button class="text-black" on:click={addForm}>Add more files +</button>
 </div>
