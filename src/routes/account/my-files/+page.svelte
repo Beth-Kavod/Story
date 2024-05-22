@@ -4,13 +4,13 @@
   import MediaViewer from "$lib/components/MediaViewer.svelte";
 </script>
 
-<div class="w-screen">
-	<div class="mx-auto w-10/12">
+<div class="w-screen overflow-x-hidden flex justify-center">
+	<div class="w-10/12">
 		<h2 class="mt-8 text-5xl">Images</h2>
 		<hr class="h-px mt-4 bg-gray-200 border-1">
 		<div class="text-black mb-4 grid grid-cols-3 w-9/12 gap-4">
 			{#each data.data.images as image}
-					<div class="border-4 bg-secondary border-slate-500 rounded-xl mt-4 p-6 h-min">
+					<div class="border-4 bg-secondary border-slate-500 rounded-xl mt-4 p-6 h-min w-min">
 						<div class="justify-between mb-2 border-b-2 border-black flex flex-row w-full min-h-5">
 							<p>
 								{image.title}

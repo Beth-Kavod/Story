@@ -33,7 +33,7 @@
       return
     }
 
-    window.location.replace(`/profile/${user.userId}`)
+    window.location.replace(`/account/profile/${user.userId}`)
   }
 
   onMount(setUserData)
