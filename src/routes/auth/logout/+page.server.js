@@ -5,5 +5,9 @@ export const load = async ({ fetch, cookies }) => {
     path: '/',
   })
 
+  cookies.delete('userStore', {  
+    path: '/',
+  })
+
   return redirect(303, '/auth/login')
 }

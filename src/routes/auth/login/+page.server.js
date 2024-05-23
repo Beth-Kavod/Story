@@ -1,6 +1,5 @@
 import { redirect } from '@sveltejs/kit'
 import { ApiHostname } from '$env/static/private'
-import { userStore } from '$lib/stores/userStore.js'
 
 export const actions = {  
   login: async ({ request, cookies }) => {
