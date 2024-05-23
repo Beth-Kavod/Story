@@ -15,7 +15,7 @@
       <summary id="tag-dropdown" class="flex">
         <li>Tags</li>
         <div>({postData.tags.length})</div>
-      </summary> 
+      </summary>
       <div aria-labelledby="tag-dropdown" class="absolute origin-top-left bg-accent flex gap-1 p-2">
         {#each postData.tags as tag}
           <li class="rounded px-1 bg-gray-300">{tag}</li>
@@ -23,17 +23,19 @@
       </div>
     </details>
     <div>
-      <a href="/profile/{postData.user}">
+      <a href="/view/profile/{postData.user}">
         <!-- Users don't have an avatar yet, replace when users do -->
         <img src={DefaultUser} alt="profile" class="w-8 h-8 rounded-full">
       </a>
     </div>
   </div>
-  
+
   <div class="border-b-2 border-black flex flex-col min-h-fit w-full">
-    <p class="text-xl ml-2">{postData.title}</p>
+    <a href={`/view/post/${postData._id}`}>
+      <p class="text-xl ml-2">{postData.title}</p>
+    </a>
   </div>
-  
+
   {#if postData.description}
     <div class="border-b-2 border-black flex flex-col min-h-fit w-full">
       <p class="text-sm ml-2">{postData.description}</p>
@@ -57,7 +59,7 @@
     </div>
   </details>
   {/if}
-  
+
   {#if postData.videos}
   <details class="border-b-2 border-black flex flex-col min-h-fit w-full">
     <summary class="text-2xl ml-2 flex justify-between">
@@ -70,7 +72,7 @@
           <legend>{video.title}</legend>
           <video controls class="h-32 w-auto border-2 border-black rounded">
             <track kind="captions">
-            <source src={`/api/view/video/${video.filename}`} alt={video.title}>  
+            <source src={`/api/view/video/${video.filename}`} alt={video.title}>
           </video>
         </fieldset>
       {/each}
@@ -90,7 +92,7 @@
           <legend>{audio.title}</legend>
           <audio controls class="w-60 border-2 border-black rounded">
             <track kind="captions">
-            <source src={`/api/view/audio/${audio.filename}`} alt={audio.title}>  
+            <source src={`/api/view/audio/${audio.filename}`} alt={audio.title}>
           </audio>
         </fieldset>
         <br>

@@ -1,4 +1,5 @@
 # Story
+Welcome to **Story**! This application allows users to easily upload, share, and manage files in a secure and efficient manner. It is designed to be user-friendly and scalable, suitable for both personal and professional use.
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -9,9 +10,6 @@
 6. [Contributing](#contributing)
 7. [License](#license)
 8. [Contact](#contact)
-
-## Introduction
-Welcome to **Story**! This application allows users to easily upload, share, and manage files in a secure and efficient manner. It is designed to be user-friendly and scalable, suitable for both personal and professional use.
 
 ## Features
 - **User Authentication**: Secure user login and registration.
@@ -102,8 +100,12 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 For any inquiries or feedback, please contact us at:
-- **Email**: droniko777@gmail.com
-- **Email**: nhadde445@west-mec.org
+- **Niko Drossos**
+    - **Github**: [Niko-Drossos](https://github.com/Niko-Drossos)
+    - **Email**: droniko777@gmail.com
+- **Nathan Hadden**
+    - **Github**: [n8hadden](https://github.com/n8hadden)
+    - **Email**: nhadde445@west-mec.org
 - **GitHub Issues**: [GitHub Issues](https://github.com/Beth-Kavod/Story/issues)
 
 Thank you for using **Story**!
