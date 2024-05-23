@@ -6,7 +6,7 @@ export const load = async ({ fetch, cookies }) => {
     throw redirect(307, '/auth/login')
   }
 
-  const response = await fetch(`${ApiHostname}/posts`, {
+  const response = await fetch(`${ApiHostname}/search/posts`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

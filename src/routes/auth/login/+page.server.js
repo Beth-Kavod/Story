@@ -35,7 +35,7 @@ export const actions = {
 
     const { user } = response.data
 
-    return redirect(303, `/profile?username=${user.username}&userId=${user.userId}&login=true`)
+    return redirect(303, `/account/profile?username=${user.username}&userId=${user.userId}&login=true`)
   },
 
   logout: async ({ request, cookies }) => {
