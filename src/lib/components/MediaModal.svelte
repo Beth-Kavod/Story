@@ -30,7 +30,6 @@
     }
 
     selectedMedia.set(currentOptions);
-    console.log($selectedMedia)
   }
 
   // Allow filtering of media in the modal

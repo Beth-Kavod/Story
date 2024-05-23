@@ -1,6 +1,7 @@
 import { ApiHostname } from '$env/static/private';
 
 export const load = async ({ fetch, cookies }) => {
+  // Set the time frame to the current date
   const timeFrame = new Date().toLocaleDateString('en-GB', {
     day: 'numeric',
     month: 'numeric',
@@ -8,8 +9,11 @@ export const load = async ({ fetch, cookies }) => {
   })
 
   const formattedTime = timeFrame.replace(/\//g, '-')
+  
+  const userId = JSON.parse(cookies.get("userStore")).userId
 
-  const fetchPost = await fetch(`${ApiHostname}/search/posts?startDate=${formattedTime}&endDate=${formattedTime}`, {
+  // Fetch the first post the user made today
+  const fetchPost = await fetch(`${ApiHostname}/search/posts?startDate=${formattedTime}&endDate=${formattedTime}&posterId=${userId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -19,9 +23,17 @@ export const load = async ({ fetch, cookies }) => {
 
   const response = await fetchPost.json()
 
-  console.log(response)
+  // If the user hasn't posted anything yet, don't render the journal page
+  if (response.success && response.data.searchResults.length === 0) {
+    return {
+      success: false,
+      message: "Journal not found, please make a post first",
+    }
+  }
 
   return {
+    success: true,
+    message: "",
     oldEntries: response.data.searchResults[0].journal || [],
     postId: response.data.searchResults[0]._id
   }

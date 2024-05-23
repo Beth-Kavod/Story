@@ -5,9 +5,16 @@
 </script>
 
 <h1 class="text-6xl my-8">Update journal</h1>
+
 {#if form?.message}
   <p class={`text-xl text-center mb-4 ${form.success ? 'text-primary' : 'text-error'}`}>{form.message}</p>
 {/if}
+
+{#if !data?.success}
+  <p class={`text-xl text-center mb-4 ${data.success ? 'text-primary' : 'text-error'}`}>{data.message}</p>
+  <a href="/upload/post" class="bg-blue-600 text-white rounded-md p-2 w-1/3 mx-auto text-center">Make post</a>
+  
+{:else}
 <div class="bg-white shadow rounded-xl w-full p-6">
   <form action="?/uploadJournal" method="POST" use:enhance enctype="multipart/form-data" class="grid grid-flow-row grid-cols-4">
     <h1 class="text-3xl col-span-4 text-black mx-auto my-4">Todays date: {new Date().toLocaleDateString()}</h1>
@@ -39,3 +46,4 @@
     </tbody>
   </table>
 </div>
+{/if}
