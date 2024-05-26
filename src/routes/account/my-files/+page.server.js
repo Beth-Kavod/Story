@@ -1,6 +1,8 @@
 import { redirect } from '@sveltejs/kit'
 import { ApiHostname } from '$env/static/private'
 
+
+// TODO: Add error handling, make these searchable from query
 export const load = async ({ fetch }) => {
   const response = await fetch(`${ApiHostname}/user/my-files`)
   const data = await response.json()

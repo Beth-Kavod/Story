@@ -7,10 +7,10 @@
 <div class="w-screen overflow-x-hidden flex justify-center">
 	<div class="w-10/12">
 		<h2 class="mt-8 text-5xl">Images</h2>
-		<hr class="h-px mt-4 bg-gray-200 border-1">
-		<div class="text-black mb-4 grid grid-cols-3 w-9/12 gap-4">
+		<hr class="h-px mt-4 bg-gray-200 border-1 mb-4">
+		<div class="text-black mb-4 grid grid-cols-4 gap-4">
 			{#each data.data.images as image}
-					<div class="border-4 bg-secondary border-slate-500 rounded-xl mt-4 p-6 h-min w-min">
+					<div class="border-4 bg-secondary border-slate-500 rounded-xl p-6">
 						<div class="justify-between mb-2 border-b-2 border-black flex flex-row w-full min-h-5">
 							<p>
 								{image.title}
@@ -27,10 +27,10 @@
 		</div>
 
 		<h2 class="mt-8 text-5xl">Videos</h2>
-		<hr class="h-px mt-4 bg-gray-200 border-1">
-		<div class="text-black mb-4 grid grid-cols-3 w-9/12 gap-4">
+		<hr class="h-px mt-4 bg-gray-200 border-1 mb-4">
+		<div class="text-black mb-4 grid grid-cols-4 gap-4">
 			{#each data.data.videos as video}
-					<div class="border-4 bg-secondary border-slate-500 rounded-xl mt-4 p-6">
+					<div class="border-4 bg-secondary border-slate-500 rounded-xl p-6">
 						<div class="justify-between mb-2 border-b-2 border-black flex flex-row w-full min-h-5">
 							<p>
 								{video.title}
@@ -45,10 +45,10 @@
 		</div>
 
 		<h2 class="mt-8 text-5xl">Audios</h2>
-		<hr class="h-px mt-4 bg-gray-200 border-1">
-		<div class="text-black mb-4 grid grid-cols-3 w-9/12 gap-4">
+		<hr class="h-px mt-4 bg-gray-200 border-1 mb-4">
+		<div class="text-black mb-4 grid grid-cols-4 gap-4">
 			{#each data.data.audios as audio}
-					<div class="border-4 bg-secondary border-slate-500 rounded-xl mt-4 p-6 flex flex-col justify-between">
+					<div class="border-4 bg-secondary border-slate-500 rounded-xl p-6 flex flex-col justify-between">
 						<div class="justify-between mb-2 border-b-2 border-black flex flex-row w-full min-h-5">
 							<p class="">
 								{audio.title}

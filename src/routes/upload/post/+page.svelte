@@ -65,7 +65,7 @@
     <label for="date" class=" text-lg">
       <p class="w-1/4">Date:</p>
     </label>
-    <input id="date" type="date" name="date" class="w-fit p-1 col-span-3" required>
+    <input id="date" type="date" value={new Date().toISOString().split('T')[0]} name="date" class="w-fit p-1 col-span-3" required>
     
     <p class="text-lg col-span-1 text-start">Add Media:</p>
     <button class="col-span-1 text-lg" on:click={event => { event.preventDefault(); showModal.set(true); mediaType.set('images') }}>Images ({$selectedMedia.images.length})</button>  

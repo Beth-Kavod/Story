@@ -20,6 +20,14 @@ export const load = async ({ fetch, cookies }) => {
 
 export const actions = {
   searchPosts: async ({ request, cookies }) => {
+    // Makes the date from ISO to MM-DD-YYYY string
+    function formatDate(dateInput) {
+      const dateObject = new Date(dateInput)
+      const formattedDate = dateObject.toLocaleDateString()
+      const stringDate = formattedDate.replace(/\//g, '-')
+      return stringDate
+    }
+    
     const data = await request.formData()
 
     let searchQuery = `?`
@@ -27,8 +35,8 @@ export const actions = {
     if (data.get('title')) searchQuery += `title=${data.get('title')}&`
     if (data.get('description')) searchQuery += `description=${data.get('description')}&`
     if (data.get('tags')) searchQuery += `tags=${data.get('tags')}&`
-    if (data.get('startDate')) searchQuery += `startDate=${data.get('startDate')}&`
-    if (data.get('endDate')) searchQuery += `endDate=${data.get('endDate')}&`
+    if (data.get('startDate')) searchQuery += `startDate=${formatDate(data.get('startDate'))}&`
+    if (data.get('endDate')) searchQuery += `endDate=${formatDate(data.get('endDate'))}&`
     // TODO: Add more filters
 
     const fetchPosts = await fetch(`${ApiHostname}/search/posts${searchQuery}`, {
