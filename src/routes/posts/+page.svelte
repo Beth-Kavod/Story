@@ -1,8 +1,46 @@
 <script>
   import { enhance } from '$app/forms';
+  import { onMount } from 'svelte';
   import UserPost from '$lib/components/UserPost.svelte';
+  import pageCache from '$lib/stores/pageCache'
+  import { get } from 'svelte/store';
+  import { page } from '$app/stores';
   export let form
+
+  $: console.log($pageCache)
+  // Cache the data for the current page
+  onMount(() => {
+    const currentCache = get(pageCache);
+    if (!currentCache[$page.url.pathname]) {
+      pageCache.update(cache => {
+        cache[$page.url.pathname] = form;
+        return cache;
+      });
+    }
+  });
+
+  $: if (form) {
+    pageCache.update(cache => {
+      cache[$page.url.pathname] = form;
+      return cache;
+    });
+  }
+
+  // Before the component is created, check if we have cached data
+  let cachedData = form
+  $: if ($pageCache[$page.url.pathname]) {
+    cachedData = JSON.parse($pageCache[$page.url.pathname])
+  }
 </script>
+
+
+<!-- ! TEST -->
+{#if cachedData}
+    <p>Cached data: {JSON.stringify(cachedData)}</p>
+{:else}
+    <p>Fresh data: {JSON.stringify(form)}</p>
+{/if}
+
 
 <h1 class="text-6xl my-8">Search Posts</h1>
 <!-- TODO: Add this back in when necessary -->
@@ -48,9 +86,11 @@
 {#if form && form.data.searchResults}
   <div class="text-3xl my-4 w-full">Search Count: {form?.data.postCount}</div>
   <div class="grid grid-cols-4 grid-flow-row gap-6 mb-8">
-    {#each form.data.searchResults as post}
-      <UserPost postData={post}/>
-    {/each}
+    {#if cachedData}
+      {#each cachedData.data.searchResults as post}
+        <UserPost postData={post}/>
+      {/each}
+    {/if}
   </div>
 
   {:else}

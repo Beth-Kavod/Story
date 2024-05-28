@@ -1,8 +1,9 @@
 <script>
   import { showModal, selectedMedia, mediaType, selectableMedia } from '$lib/stores/mediaModal';
   import { onMount } from 'svelte';
-  import getCookie from '$lib/helpers/getClientCookies';
+  import { page } from '$app/stores';
   import MediaModal from '$lib/components/MediaModal.svelte';
+  import tagList from '$lib/assets/JSON/tagList';
 
   export let data
   export let form
@@ -89,9 +90,9 @@
     <div class="col-span-3">
       <input list="knownTags" id="tags" type="text" class="mx-1 p-1 border-b-2 border-gray-300">
       <datalist id="knownTags">
-        <!-- TODO: Add more tags -->
-        <option value="tag1">Tag 1</option>
-        <option value="tag2">Tag 2</option>
+        {#each tagList as tag}
+          <option value={tag}>{tag}</option>
+        {/each}
       </datalist>
       <button class="text-primary font-semibold bg-white p-1 text-2xl" on:click={event => { addTag(`tags`); event.preventDefault() }}>+</button>
     </div>

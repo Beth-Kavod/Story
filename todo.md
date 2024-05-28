@@ -2,7 +2,7 @@
 - Making /view/post/[postId] page
 
 # ToDo
-- Make the searching API take in a page parameter 
+- Fix post page caching
 - Create view/images?videos?audios routes
 - Fix bug where the my-files load action happens when you click on the hamburger menu
 - Create about page

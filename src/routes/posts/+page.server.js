@@ -37,6 +37,8 @@ export const actions = {
     if (data.get('tags')) searchQuery += `tags=${data.get('tags')}&`
     if (data.get('startDate')) searchQuery += `startDate=${formatDate(data.get('startDate'))}&`
     if (data.get('endDate')) searchQuery += `endDate=${formatDate(data.get('endDate'))}&`
+    // TODO: Add in page functionality
+    // if (data.get('page')) searchQuery += `page=${data.get('page')}&`
     // TODO: Add more filters
 
     const fetchPosts = await fetch(`${ApiHostname}/search/posts${searchQuery}`, {
@@ -58,9 +60,6 @@ export const actions = {
       }
     }
 
-    return {
-      success: true,
-      data: response.data
-    }
+    return response
   }
 }
