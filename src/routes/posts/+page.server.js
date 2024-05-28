@@ -1,24 +1,26 @@
 import { redirect } from '@sveltejs/kit'
 import { ApiHostname } from '$env/static/private'
 
-export const load = async ({ fetch, cookies }) => {
+export const load = async ({ fetch, url, cookies }) => {
   if (!cookies.get('media_authentication')) {
     throw redirect(307, '/auth/login')
   }
 
-  const response = await fetch(`${ApiHostname}/search/posts`, {
+  const response = await fetch(`${ApiHostname}/search/posts${url.search}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       'x-access-token': cookies.get('media_authentication')
     }
   })
+
   const data = await response.json()
 
   return data
 }
 
-export const actions = {
+// TODO: No longer needed, remove later
+/* export const actions = {
   searchPosts: async ({ request, cookies }) => {
     // Makes the date from ISO to MM-DD-YYYY string
     function formatDate(dateInput) {
@@ -37,8 +39,7 @@ export const actions = {
     if (data.get('tags')) searchQuery += `tags=${data.get('tags')}&`
     if (data.get('startDate')) searchQuery += `startDate=${formatDate(data.get('startDate'))}&`
     if (data.get('endDate')) searchQuery += `endDate=${formatDate(data.get('endDate'))}&`
-    // TODO: Add in page functionality
-    // if (data.get('page')) searchQuery += `page=${data.get('page')}&`
+    if (data.get('page')) searchQuery += `page=${data.get('page')}&`
     // TODO: Add more filters
 
     const fetchPosts = await fetch(`${ApiHostname}/search/posts${searchQuery}`, {
@@ -62,4 +63,4 @@ export const actions = {
 
     return response
   }
-}
+} */
