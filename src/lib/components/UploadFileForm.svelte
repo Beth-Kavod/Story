@@ -14,13 +14,34 @@
   function removeTag(tag) {
     selectedTags = selectedTags.filter(t => t !== tag);
   }
+
+  /* ------------------------ Disable transcription box ----------------------- */
+
+  function disableTranscription(event) {
+    const fileInput = event.target;
+    const transcribeCheckbox = document.getElementById(`transcribe${index}`);
+    
+    if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const validTypes = ['audio/', 'video/'];
+        const fileType = file.type;
+
+        if (validTypes.some(type => fileType.startsWith(type))) {
+          transcribeCheckbox.disabled = false;
+        } else {
+          transcribeCheckbox.disabled = true;
+        }
+    } else {
+      transcribeCheckbox.disabled = true;
+    }
+  }
 </script>
 
 <div class="grid grid-flow-row grid-cols-4 col-span-4 gap-y-2">
   <label for="files{index}" class="text-black flex items-center mr-2 col-span-1">
     Upload:
   </label>
-  <input class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3"  id="file{index}" type="file" name="file{index}" required>
+  <input class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3"  id="file{index}" type="file" name="file{index}" on:change={disableTranscription} required>
   
   <label for="date{index}" class="text-black flex items-center mr-2 col-span-1">
     Date:
@@ -37,6 +58,23 @@
   </label>
   <input id="description{index}" type="text" name="description{index}" class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3">
   
+  
+  <label for="tags{index}" class="text-black flex items-center mr-2 col-span-1">
+    Add Tags:
+  </label>
+  <div class="col-span-3 grid grid-rows-1 grid-cols-10">
+    <input list="knownTags" id="tags{index}" type="text" class="col-span-9 mx-1 p-1 border-b-2 border-gray-300 text-black">
+    <datalist id="knownTags">
+      <!-- TODO: Add more tags -->
+      <option value="tag1">Tag 1</option>
+      <option value="tag2">Tag 2</option>
+    </datalist>
+    <button class="col-span-1 place-self-end items-center flex w-min h-8 text-primary font-semibold bg-white p-1 text-3xl" on:click={event => { addTag(`tags${index}`); event.preventDefault() }}>+</button>
+  </div>
+  
+  <!-- Hidden input field to store the selectedTags array in FormData for request -->
+  <input type="hidden" name="tags{index}" bind:value={selectedTags}>
+  
   <label for="privacy{index}" class="text-black flex items-center mr-2 col-span-1">
     Privacy:
   </label>
@@ -45,22 +83,15 @@
     <option value="Public">Public</option>
     <option value="Unlisted">Unlisted</option>
   </select>
-  
-  <label for="tags{index}" class="text-black flex items-center mr-2 col-span-1">
-    Add Tags:
+
+  <label for="options" class="text-black flex items-center mr-2 col-span-1">
+    Options:
   </label>
-    <div class="col-span-3">
-      <input list="knownTags" id="tags{index}" type="text" class="mx-1 p-1 border-b-2 border-gray-300 text-black">
-      <datalist id="knownTags">
-        <!-- TODO: Add more tags -->
-        <option value="tag1">Tag 1</option>
-        <option value="tag2">Tag 2</option>
-      </datalist>
-      <button class="text-primary font-semibold bg-white p-1 text-2xl" on:click={event => { addTag(`tags${index}`); event.preventDefault() }}>+</button>
-    </div>
-  
-  <!-- Hidden input field to store the selectedTags array in FormData for request -->
-  <input type="hidden" name="tags{index}" bind:value={selectedTags}>
+  <div class="col-span-3">
+    Transcribe:
+    <input type="checkbox" id="transcribe{index}" name="transcribe{index}" disabled  class="mx-1 p-1 border-b-2 border-gray-300 text-black">
+    (not implemented yet)
+  </div>
   
   {#if selectedTags.length > 0}
     <div class="col-span-4">

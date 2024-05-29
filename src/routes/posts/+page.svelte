@@ -98,6 +98,11 @@
     Description:
   </label>
   <input type="text" id="description" name="description" value={data?.data.query.description || ''} placeholder="Today was the day that..." class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3">
+  
+  <label class="text-black flex items-center mr-2 col-span-1" for="transcription">
+    Transcription:
+  </label>
+  <input type="text" id="transcription" name="transcription" value={data?.data.query.transcription || ''} placeholder="we then went to the park..." class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3">
 
   <label class="text-black flex items-center mr-2 col-span-1" for="tags">
     Tags:
