@@ -9,8 +9,7 @@
 
   const searchParams = $page.url.searchParams
 
-  $: currentPage = searchParams.get('page') || 1
-
+  let currentPage
   // Cache the data for the current page
   /* onMount(() => {
     const currentCache = get(pageCache)
@@ -41,9 +40,6 @@
   function submitForm(event) {
     event.preventDefault()
 
-    currentPage = 1
-    document.getElementById('currentPage').value = 1
-
     const formElement = document.getElementById('searchForm')
     const formData = new FormData(formElement)
 
@@ -63,18 +59,16 @@
 
   // Event handlers for the pagination buttons
   function previousPage(event) {
-    if (currentPage > 1) {
-      currentPage--
-      document.getElementById('currentPage').value = currentPage
-      document.getElementById('currentPage').type = 'number'
+    if (currentPage.value > 1) {
+      currentPage.value = currentPage.value - 1
       submitForm(event)
     }
   }
 
   function nextPage(event) {
-    if (currentPage < data?.data.pageCount) { 
-      currentPage++
-      document.getElementById('currentPage').value = currentPage
+    console.log(currentPage.value < data?.data.pageCount)
+    if (currentPage.value < data?.data.pageCount) { 
+      currentPage.value++
       submitForm(event)
     }
   }
@@ -90,11 +84,11 @@
 
 <h1 class="text-6xl my-8">Search Posts</h1>
 
-<!-- {#if form?.message !== undefined }
-  <p class="mb-2">{form.message}</p>
-{/if} -->
+{#if data?.success === false }
+  <p class="mb-2">{data.message}</p>
+{/if}
 
-<form class="grid grid-flow-row grid-cols-4 bg-white p-2 border rounded-xl gap-3" id="searchForm" on:submit={submitForm}>
+<form class="grid grid-flow-row grid-cols-4 bg-white p-2 border rounded-xl gap-3" id="searchForm" on:submit={event => { currentPage.value = 1; submitForm(event) }}>
   <label class="text-black flex items-center mr-2 col-span-1" for="title">
     Title:
   </label>
@@ -120,7 +114,7 @@
   </label>
   <input type="date" id="endDate" name="endDate" value={data?.data.query.endDate || ''} class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3">
 
-  <input type="hidden" name="page" id="currentPage" bind:value={currentPage}>
+  <input type="hidden" name="page" bind:this={currentPage} value={data?.data.page || 1}>
 
   <button type="submit" class="w-1/3 col-span-4 mx-auto text-white p-2 bg-blue-600 rounded text-center">
     Search
@@ -131,9 +125,15 @@
 {#if data}
   <div class="flex justify-between text-3xl my-4 w-full">
     <span>Search Count: {data?.data.total}</span>
+    
+    <!-- TODO: Add limit buttons to change number of returned posts -->
+    <!-- <div>
+      <button on:click={}></button>
+    </div> -->
+
     <div class="flex items-center">
       <button type="button" on:click={previousPage} class="text-black px-4 py-2 mx-1 bg-gray-200 rounded">Previous</button>
-      <span>{currentPage}/{data?.data.pageCount || 1}</span>
+      <span>{currentPage?.value}/{data?.data.pageCount || 1}</span>
       <button type="button" on:click={nextPage} class="text-black px-4 py-2 mx-1 bg-gray-200 rounded">Next</button>
     </div>
   </div>
@@ -142,10 +142,10 @@
       {#each data.data.searchResults as post}
         <UserPost postData={post}/>
       {/each}
+
+      {:else}
+
+      <div class="text-3xl my-4 w-full">No Results Found</div>
     {/if}
   </div>
-
-  {:else}
-
-  <div class="text-3xl my-4 w-full">No Results Found</div>
 {/if}
