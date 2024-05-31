@@ -2,6 +2,7 @@
   import DefaultUser from '$lib/assets/icons/DefaultUser.png'
   import CreateComment from '$lib/components/CreateComment.svelte'
   import CommentSection from '$lib/components/CommentSection.svelte'
+  import VoteControls from '$lib/components/VoteControls.svelte'
 
   export let data
 
@@ -73,7 +74,7 @@
 
   <!-- Footer, likes and comments -->
   <div class="grid grid-cols-3 grid-rows-1">
-    <h1 class="col-span-1">likes</h1>
+    <VoteControls origin={{ id: post._id, type: "post", voteCount: post.voteCount }} />
     <button class="col-span-1" on:click={toggleComments}>comments ({post.comments.length})</button>
     <button class="col-span-1" on:click={promptComment}>Reply</button>
   </div>

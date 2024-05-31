@@ -1,6 +1,7 @@
 <script>
   import DefaultUser from '$lib/assets/icons/DefaultUser.png'
   import CreateComment from './CreateComment.svelte';
+  import VoteControls from './VoteControls.svelte';
   // import CommentSection from '$lib/components/CommentSection.svelte'
   
   export let originData
@@ -116,12 +117,12 @@
       <!-- Commenting options -->
       <div>
         <!-- TODO: make these icons -->
-        <button class="bg-gray-200 px-1 rounded" on:click={commentVote(comment._id)}>like</button>
+        <VoteControls origin={{ id: comment._id, type: "comment", voteCount: comment.voteCount }} />
         <button class="bg-gray-200 px-1 rounded" on:click={showCommentComments(comment._id)}>comments</button>
         <button class="bg-gray-200 px-1 rounded" on:click={createCommentOnComment(comment._id)}>create comment</button>
       </div>
       <!-- Show comments on comments -->
-      <!-- TODO: make this reactive -->
+      <!-- TODO: make this reactive and recursive -->
       <!-- {#if findCommentData(comment._id)}
             <CommentSection originData={findCommentData(comment._id)}/>
           {/if} -->
