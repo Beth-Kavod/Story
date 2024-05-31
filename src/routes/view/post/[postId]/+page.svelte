@@ -7,9 +7,12 @@
 
   $: post = data.data.post
 
+  /* ----------------------- Comment selection toggling ----------------------- */
+
   let commentsOpen = true
 
   let createCommentData = {
+    
     commentId: "",
 
   }
@@ -18,6 +21,13 @@
     if (post.comments.length) {
       commentsOpen = !commentsOpen
     }
+  }
+
+  /* ---------------------------- Comment creation ---------------------------- */
+
+  let commentModal = false
+  function promptComment() {
+    commentModal = !commentModal
   }
 </script>
 
@@ -65,7 +75,7 @@
   <div class="grid grid-cols-3 grid-rows-1">
     <h1 class="col-span-1">likes</h1>
     <button class="col-span-1" on:click={toggleComments}>comments ({post.comments.length})</button>
-    <h1 class="col-span-1">hello</h1>
+    <button class="col-span-1" on:click={promptComment}>Reply</button>
   </div>
 </div>
 
@@ -73,4 +83,6 @@
   <CommentSection originData={post} />
 {/if}
 
-<!-- <CreateComment commentType="post" originId={post._id} originData={post} />   -->
+{#if commentModal}
+  <CreateComment commentType="post" originId={post._id} originData={post} />  
+{/if}

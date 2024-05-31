@@ -3,11 +3,11 @@
   export let originId
   export let originData
 
-  console.log(originData)
-
   // Link to the dialog element and show it on screen once mounted
   let dialogElement
   $: if (dialogElement?.nodeName === "DIALOG") dialogElement.showModal()
+
+  /* --------------------- Send request to create comment --------------------- */
 
   async function submitForm(event) {
     const content = event.target[0].value
@@ -41,12 +41,15 @@
 <!-- TODO: Fix this to look nice, right now its functional -->
 
 <dialog class="bg-white text-black mt-8 rounded w-2/5" bind:this={dialogElement}>
+  <!-- Display the document to reply to -->
   <div class="p-2">
     <!-- TODO: Change user to be object with username -->
     <h1 class="text-3xl">Reply to: <span class="text-lg">{originData._id}</span></h1>
     <div class="py-1">
-      <span class="text-3xl">{commentType[0].toUpperCase()}{commentType.unshift()}:</span> {originData.content}</div>
+      <span class="text-3xl">{commentType}:</span> {originData.content || originData.description}</div>
   </div>
+
+  <!-- Prompt comment creation -->
   <form class="flex flex-col justify-center items-center p-2" method="dialog" on:submit={submitForm}>
     <textarea class="rounded w-full border-black border-2 min-h-36" name="content"></textarea>
     <div class="flex justify-end w-full">

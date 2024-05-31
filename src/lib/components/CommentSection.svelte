@@ -57,8 +57,8 @@
 
   // This is the options to pass into the CreateComment component
   let createCommentData = {
-    open: false,
     id: "",
+    open: false,
     data: {}
   }
 
@@ -76,7 +76,7 @@
   /* ----------------------------- Comment liking ----------------------------- */
 
   // TODO: Add this in later
-  function likeComment(id) {
+  function commentVote(id) {
     console.log(`Liked comment: ${id}`)
   }
 </script>
@@ -116,16 +116,16 @@
       <!-- Commenting options -->
       <div>
         <!-- TODO: make these icons -->
-        <button class="bg-gray-200 px-1 rounded" on:click={likeComment(comment._id)}>like</button>
+        <button class="bg-gray-200 px-1 rounded" on:click={commentVote(comment._id)}>like</button>
         <button class="bg-gray-200 px-1 rounded" on:click={showCommentComments(comment._id)}>comments</button>
         <button class="bg-gray-200 px-1 rounded" on:click={createCommentOnComment(comment._id)}>create comment</button>
       </div>
       <!-- Show comments on comments -->
       <!-- TODO: make this reactive -->
-      <!-- {#if findCommentData(comment._id)} -->
-        <!-- <CommentSection originData={findCommentData(comment._id)}/> -->
-        <span class="text-error">Nested comment section placeholder</span>
-      <!-- {/if} -->
+      <!-- {#if findCommentData(comment._id)}
+            <CommentSection originData={findCommentData(comment._id)}/>
+          {/if} -->
+        <span class="text-error">Nested comment section placeholder</span> 
     </div>
   {/each}
 </div>
