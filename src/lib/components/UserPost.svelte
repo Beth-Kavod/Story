@@ -36,11 +36,12 @@
     </a>
   </div>
 
-  {#if postData.description}
+  <!-- TODO: Im removing this for now -->
+  <!-- {#if postData.description}
     <div class="border-b-2 border-black flex flex-col min-h-fit w-full">
       <p class="text-sm ml-2">{postData.description}</p>
     </div>
-  {/if}
+  {/if} -->
 
   {#if postData.images}
   <details class="border-b-2 border-black flex flex-col min-h-fit w-full">
