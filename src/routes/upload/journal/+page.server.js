@@ -2,18 +2,14 @@ import { ApiHostname } from '$env/static/private';
 
 export const load = async ({ fetch, cookies }) => {
   // Set the time frame to the current date
-  const timeFrame = new Date().toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'numeric',
-    year: 'numeric'
-  })
+  const timeFrame = new Date().toLocaleDateString()
 
   const formattedTime = timeFrame.replace(/\//g, '-')
   
   const userId = JSON.parse(cookies.get("userStore")).userId
 
   // Fetch the first post the user made today
-  const fetchPost = await fetch(`${ApiHostname}/search/posts?startDate=${formattedTime}&endDate=${formattedTime}&posterId=${userId}`, {
+  const fetchPost = await fetch(`${ApiHostname}/search/posts?startDate=${formattedTime}&endDate=${formattedTime}&user=${userId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

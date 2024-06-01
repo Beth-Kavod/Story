@@ -1,5 +1,8 @@
 <script>
+  import tagList from '$lib/assets/JSON/tagList.json'
+
   export let index;
+  
   let selectedTags = [];
 
   function addTag(tagsId) {
@@ -65,9 +68,9 @@
   <div class="col-span-3 grid grid-rows-1 grid-cols-10">
     <input list="knownTags" id="tags{index}" type="text" class="col-span-9 mx-1 p-1 border-b-2 border-gray-300 text-black">
     <datalist id="knownTags">
-      <!-- TODO: Add more tags -->
-      <option value="tag1">Tag 1</option>
-      <option value="tag2">Tag 2</option>
+      {#each tagList as tag}
+        <option value={tag}>{tag}</option>
+      {/each}
     </datalist>
     <button class="col-span-1 place-self-end items-center flex w-min h-8 text-primary font-semibold bg-white p-1 text-3xl" on:click={event => { addTag(`tags${index}`); event.preventDefault() }}>+</button>
   </div>

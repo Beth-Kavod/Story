@@ -43,8 +43,7 @@
 <dialog class="bg-white text-black mt-8 rounded w-2/5" bind:this={dialogElement}>
   <!-- Display the document to reply to -->
   <div class="p-2">
-    <!-- TODO: Change user to be object with username -->
-    <h1 class="text-3xl">Reply to: <span class="text-lg">{originData._id}</span></h1>
+    <h1 class="text-3xl">Reply to {originData.user.username}</h1>
     <div class="py-1">
       <span class="text-3xl">{commentType}:</span> {originData.content || originData.description}</div>
   </div>

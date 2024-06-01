@@ -73,13 +73,6 @@
       data: comment
     }
   }
-
-  /* ----------------------------- Comment liking ----------------------------- */
-
-  // TODO: Add this in later
-  function commentVote(id) {
-    console.log(`Liked comment: ${id}`)
-  }
 </script>
 
 
