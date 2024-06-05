@@ -16,11 +16,14 @@
   // Function to add more forms. (limit 10 forms)
   // TODO: This works but doesn't update the frontend in real time
   function addForm() {
-    console.log($forms)
     let addedForm = false
     for (const [key, value] of $forms.entries()) {
       if (value === null) {
-        $forms.set(key, true)
+        forms.update(form => {
+          form.set(key, true)
+          return form
+        })
+
         addedForm = true
         break
       }

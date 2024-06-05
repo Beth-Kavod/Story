@@ -7,7 +7,10 @@
   /* ------------------------------- Remove form ------------------------------ */
 
   function removeForm() {
-    $forms.set(index, null)
+    forms.update(form => {
+      form.set(index, null)
+      return form
+    })
     console.log($forms)
   }
 
