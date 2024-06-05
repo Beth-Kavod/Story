@@ -1,16 +1,32 @@
 <script>
   import { onMount, onDestroy, createEventDispatcher } from 'svelte';
-  import { writable } from 'svelte/store';
   import UploadFileForm from '$lib/components/UploadFileForm.svelte'; // Assuming UploadFileForm is a Svelte component
+  import forms from '$lib/stores/fileForms'
 
   export let form
 
-  // Store to maintain form parameters
-  const forms = writable([]);
+  // 6/5/24 
+  // Wow... ive never felt dumb in my life then when I was making this function.
+  // I over thought it so insanely hard I don't even know what to say...
+  // This is it.. this was ALL I NEEDED! just to find the first element that was null!
+  // Why did this take me like 45 minutes! i was trying to set variables like "prevHighest" and "nextIndex"
+  // to store the previous value? why? I didn't need to! i just needed to check if the current value (the lowest) was null!
+  // Im going crazy guys... don't code at high altitude. Airplanes make me crazy!
 
-  // Function to add more forms
+  // Function to add more forms. (limit 10 forms)
+  // TODO: This works but doesn't update the frontend in real time
   function addForm() {
-    forms.update(existingForms => [...existingForms, { /* new form parameters */ }]);
+    console.log($forms)
+    let addedForm = false
+    for (const [key, value] of $forms.entries()) {
+      if (value === null) {
+        $forms.set(key, true)
+        addedForm = true
+        break
+      }
+    }
+
+    if (!addedForm) console.log("you may only upload 10 files at a time")
   }
 
   addForm()
@@ -25,12 +41,12 @@
 <div class="bg-white p-2 border rounded-xl gap-3">
   <form method="POST" action="?/uploadFiles" enctype="multipart/form-data"  class="grid-cols-4 text-black gap-y-2 grid grid-flow-row">
     {#each $forms as form, index (index)}
-      {#if index > 0}
+      {#if form[1] !== null}
+        <UploadFileForm index={index} />
         <div class="border-b-2 border-black col-span-4" />
       {/if}
-      <UploadFileForm index={index} />
     {/each}
-    <button class="text-black col-start-2 col-span-2 border-2 rounded hover:bg-slate-100" on:click={event => { event.preventDefault(); addForm() }}>Add more files +</button>
-    <button type="submit" class="bg-blue-600 text-white rounded-sm col-start-2 col-span-2">Submit</button>
+    <button class="text-black col-span-2 mr-2 border-2 rounded hover:bg-slate-100" on:click={event => { event.preventDefault(); addForm() }}>Add more files +</button>
+    <button type="submit" class="bg-blue-600 text-white rounded-sm ml-2 col-span-2">Submit</button>
   </form>
 </div>

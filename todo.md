@@ -1,5 +1,6 @@
 # Currently
 - Making /view/post/[postId] page
+- Fixing upload post form to actually render the forms as they get created  
 
 # ToDo
 - Fix post page caching

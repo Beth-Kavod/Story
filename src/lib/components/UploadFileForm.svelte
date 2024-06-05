@@ -1,7 +1,18 @@
 <script>
   import tagList from '$lib/assets/JSON/tagList.json'
+  import forms from '$lib/stores/fileForms.js'
 
   export let index;
+
+  /* ------------------------------- Remove form ------------------------------ */
+
+  function removeForm() {
+    $forms.set(index, null)
+    console.log($forms)
+  }
+
+
+  /* ---------------------------- Tag functionality --------------------------- */
   
   let selectedTags = [];
 
@@ -109,4 +120,7 @@
       </ul>
     </div>
   {/if}
+
+  <button class="text-error col-span-4" on:click={event => { event.preventDefault(); removeForm() }}>Remove file</button>
+
 </div>
