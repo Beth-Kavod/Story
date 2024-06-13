@@ -3,36 +3,50 @@
   import CreateComment from '$lib/components/CreateComment.svelte'
   import CommentSection from '$lib/components/CommentSection.svelte'
   import VoteControls from '$lib/components/VoteControls.svelte'
+  import { openComments } from '$lib/stores/commentData.js'
+  import { get } from 'svelte/store';
 
   export let data
 
   $: post = data.data.post
 
+  $: openComments.update(comments => {
+    comments.set(post._id, {
+      origin: null,
+      open: false,
+      comments: post.comments,
+      depth: 1
+    })
+
+    return comments
+  })
+
   /* ----------------------- Comment selection toggling ----------------------- */
 
-  let commentsOpen = true
-
-  let createCommentData = {
-    
-    commentId: "",
-
-  }
-
+  // This is a clone of the comment function because it needs to have "null" as the origin
   function toggleComments() {
     if (post.comments.length) {
-      commentsOpen = !commentsOpen
+      openComments.update(comments => {
+        comments.set(post._id, {
+          origin: null,
+          open: !comments.get(post._id).open,
+          comments: post.comments,
+          depth: 1
+        })
+
+        return comments
+      })
     }
   }
 
   /* ---------------------------- Comment creation ---------------------------- */
 
-  let commentModal = false
+  // Fix this to use the store
+  /* let commentModal = false
   function promptComment() {
     commentModal = !commentModal
-  }
+  } */
 </script>
-
-<h1 class="text-6xl my-8">View Post</h1>
 
 {#if !data.success}
   <p class={`text-xl text-center mb-4 ${data.success ? 'text-primary' : 'text-error'}`}>{data.message}</p>
@@ -76,14 +90,16 @@
   <div class="grid grid-cols-3 grid-rows-1">
     <VoteControls origin={{ id: post._id, type: "post", voteCount: post.voteCount }} />
     <button class="col-span-1" on:click={toggleComments}>comments ({post.comments.length})</button>
-    <button class="col-span-1" on:click={promptComment}>Reply</button>
+    <!-- <button class="col-span-1" on:click={promptComment}>Reply</button> -->
   </div>
 </div>
 
-{#if commentsOpen}
-  <CommentSection originData={post} />
+{#if $openComments.get(post._id).open}
+  <div class="w-3/5">  
+    <CommentSection originData={post}/>
+  </div>
 {/if}
 
-{#if commentModal}
+<!-- {#if commentModal}
   <CreateComment commentType="post" originId={post._id} originData={post} />  
-{/if}
+{/if} -->

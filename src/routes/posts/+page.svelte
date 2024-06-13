@@ -85,7 +85,7 @@
 <h1 class="text-6xl my-8">Search Posts</h1>
 
 {#if data?.success === false }
-  <p class="mb-2">{data.message}</p>
+  <p class="mb-2 text-error">{data.message}</p>
 {/if}
 
 <form class="grid grid-flow-row grid-cols-4 bg-white p-2 border rounded-xl gap-3" id="searchForm" on:submit={event => { currentPage.value = 1; submitForm(event) }}>
