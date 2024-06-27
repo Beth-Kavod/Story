@@ -34,7 +34,9 @@ export const actions = {
 
     const { user } = response.data
 
-    return redirect(303, `/account/profile?username=${user.username}&userId=${user.userId}&login=true`)
+    const redirectRequest = new URL(request.headers.get('referer')).searchParams.get('redirect')
+
+    return redirect(303, `/account/profile?username=${user.username}&userId=${user.userId}&login=true&redirect=${redirectRequest || ""}`)
   },
 
   logout: async ({ request, cookies }) => {

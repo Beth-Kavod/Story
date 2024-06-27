@@ -25,5 +25,11 @@ export const load = async ({ fetch, cookies, route, url }) => {
     throw new redirect(303, `/auth/login`)
   }
 
+  const redirectRequest = searchParams.get('redirect')
+
+  if (redirectRequest) {
+    throw new redirect(303, redirectRequest)
+  }
+
   throw new redirect(303, `/account/profile/${user.userId}`)
 }
