@@ -22,7 +22,7 @@ export const actions = {
     })
 
     const response = await uploadRequest.json()
-
+    console.log(response)
     if (response.success) {
       return {
         success: true,

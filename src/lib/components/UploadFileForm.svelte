@@ -39,15 +39,15 @@
     const transcribeCheckbox = document.getElementById(`transcribe${index}`);
     
     if (fileInput.files.length > 0) {
-        const file = fileInput.files[0];
-        const validTypes = ['audio/', 'video/'];
-        const fileType = file.type;
+      const file = fileInput.files[0];
+      const validTypes = ['audio/', 'video/'];
+      const fileType = file.type;
 
-        if (validTypes.some(type => fileType.startsWith(type))) {
-          transcribeCheckbox.disabled = false;
-        } else {
-          transcribeCheckbox.disabled = true;
-        }
+      if (validTypes.some(type => fileType.startsWith(type))) {
+        transcribeCheckbox.disabled = false;
+      } else {
+        transcribeCheckbox.disabled = true;
+      }
     } else {
       transcribeCheckbox.disabled = true;
     }

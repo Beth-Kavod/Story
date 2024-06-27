@@ -17,7 +17,7 @@
       const response = await fetch(`/api/view/${fileType}/${filename}`, { credentials: 'include' })
       
       if (!response.ok) {
-        throw new Error('Failed to fetch image')
+        throw new Error('Failed to fetch media')
       }
 
       const blob = await response.blob()
