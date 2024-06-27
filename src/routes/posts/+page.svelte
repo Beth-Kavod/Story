@@ -7,8 +7,6 @@
 
   export let data
 
-  const searchParams = $page.url.searchParams
-
   let currentPage
   // Cache the data for the current page
   /* onMount(() => {
@@ -82,6 +80,11 @@
     <p>Fresh data: {JSON.stringify(form)}</p>
 {/if} -->
 
+<svelte:head>
+  <title>Search Posts</title>
+</svelte:head>
+
+
 <h1 class="text-6xl my-8">Search Posts</h1>
 
 {#if data?.success === false }
@@ -133,7 +136,9 @@
     
     <!-- TODO: Add limit buttons to change number of returned posts -->
     <!-- <div>
-      <button on:click={}></button>
+      <button on:click={}>8</button>
+      <button on:click={}>16</button>
+      <button on:click={}>32</button>
     </div> -->
 
     <div class="flex items-center">

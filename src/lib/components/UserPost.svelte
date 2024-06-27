@@ -4,12 +4,8 @@
   export let postData
 </script>
 
-<svelte:head>
-  <title>Search Posts</title>
-</svelte:head>
-
 <div class="text-black border-4 bg-white border-primary rounded-xl min-w-min w-64 h-fit">
-  <div class="w-full h-min border-b-2 p-2 border-black flex justify-between">
+  <div class="w-full h-min p-2 border-black flex justify-between">
     <div class="w-min bg-gray-300 px-2 rounded text-lg flex items-center justify-center">{new Date(postData.date).toLocaleDateString()}</div>
     <details class="w-min list-none text-sm flex gap-1 align-middle">
       <summary id="tag-dropdown" class="flex">
@@ -30,26 +26,19 @@
     </div>
   </div>
 
-  <div class="border-b-2 border-black flex flex-col min-h-fit w-full">
+  <div class="border-t-2 border-black flex flex-col min-h-fit w-full">
     <a href={`/view/post/${postData._id}`}>
       <p class="text-xl ml-2">{postData.title}</p>
     </a>
   </div>
 
-  <!-- TODO: Im removing this for now -->
-  <!-- {#if postData.description}
-    <div class="border-b-2 border-black flex flex-col min-h-fit w-full">
-      <p class="text-sm ml-2">{postData.description}</p>
-    </div>
-  {/if} -->
-
-  {#if postData.images}
-  <details class="border-b-2 border-black flex flex-col min-h-fit w-full">
-    <summary class="text-2xl ml-2 flex justify-between">
-      <li>Images</li>
+  {#if postData.images.length}
+  <!-- <details class="border-t-2 border-black flex flex-col min-h-fit w-full"> -->
+    <div class="text-2xl flex justify-between border-t-2 border-black">
+      <h2 class="ml-2">Images</h2>
       <div class="mr-2 text-gray-500">({postData.images.length})</div>
-    </summary>
-    <div class="ml-2 mt-0 w-56 h-min grid grid-cols-1 grid-flow-row gap-1">
+    </div>
+    <!-- <div class="ml-2 mt-0 w-56 h-min grid grid-cols-1 grid-flow-row gap-1">
       {#each postData.images as image}
         <fieldset class="w-full">
           <legend>{image.title}</legend>
@@ -57,17 +46,17 @@
         </fieldset>
         <br>
       {/each}
-    </div>
-  </details>
+    </div> -->
+  <!-- </details> -->
   {/if}
 
-  {#if postData.videos}
-  <details class="border-b-2 border-black flex flex-col min-h-fit w-full">
-    <summary class="text-2xl ml-2 flex justify-between">
-      <li>Videos</li>
+  {#if postData.videos.length}
+  <!-- <details class="border-t-2 border-black flex flex-col min-h-fit w-full"> -->
+    <div class="text-2xl flex justify-between border-t-2 border-black">
+      <h2 class="ml-2">Videos</h2>
       <div class="mr-2 text-gray-500">({postData.videos.length})</div>
-    </summary>
-    <div class="ml-2 mt-0 w-56 h-min grid grid-cols-1 grid-flow-row gap-1">
+    </div>
+    <!-- <div class="ml-2 mt-0 w-56 h-min grid grid-cols-1 grid-flow-row gap-1">
       {#each postData.videos as video}
         <fieldset class="w-full">
           <legend>{video.title}</legend>
@@ -77,17 +66,17 @@
           </video>
         </fieldset>
       {/each}
-    </div>
-  </details>
+    </div> -->
+  <!-- </details> -->
   {/if}
 
-  {#if postData.audios}
-  <details class="border-b-2 border-black flex flex-col min-h-fit w-full">
-    <summary class="text-2xl ml-2 flex justify-between">
-      <li>Audios</li>
+  {#if postData.audios.length}
+  <!-- <details class="border-t-2 border-black flex flex-col min-h-fit w-full"> -->
+    <div class="text-2xl flex justify-between border-t-2 border-black">
+      <h2 class="ml-2">Audios</h2>
       <div class="mr-2 text-gray-500">({postData.audios.length})</div>
-    </summary>
-    <div class="ml-2 mt-0 w-56 h-min grid grid-cols-1 grid-flow-row gap-1">
+    </div>
+    <!-- <div class="ml-2 mt-0 w-56 h-min grid grid-cols-1 grid-flow-row gap-1">
       {#each postData.audios as audio}
         <fieldset class="w-full">
           <legend>{audio.title}</legend>
@@ -98,12 +87,12 @@
         </fieldset>
         <br>
       {/each}
-    </div>
-  </details>
+    </div> -->
+  <!-- </details> -->
   {/if}
 
-  {#if postData.journal}
-    <details class="border-black flex flex-col min-h-fit w-full">
+  {#if postData.journal.length}
+    <details class="border-black border-t-2 flex flex-col min-h-fit w-full">
       <summary class="text-2xl ml-2 flex justify-between">
         <li>Journal</li>
         <div class="mr-2 text-gray-500">({postData.journal.length})</div>
