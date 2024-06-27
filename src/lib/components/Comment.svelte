@@ -2,7 +2,8 @@
   import DefaultUser from '$lib/assets/icons/DefaultUser.png'
   import VoteControls from './VoteControls.svelte'
   import CommentSection from '$lib/components/CommentSection.svelte'
-  import { openComments, createCommentData } from '$lib/stores/commentData.js'
+  import { openComments, commentModal, promptComment } from '$lib/stores/commentData.js'
+  import CreateComment from './CreateComment.svelte';
 
   export let comment
   export let originId
@@ -50,7 +51,6 @@
 
         commentData.open = !commentData.open
         comments.set(comment._id, commentData)
-        console.log(comments)
         return comments
       })
     }
@@ -85,20 +85,21 @@
 
   <!-- Comment text -->
   <div class="mb-2">{comment.content}</div>
-  
-  <!-- Commenting options -->
-  <div class="flex justify-between">
-    <!-- TODO: make these icons -->
-    <VoteControls origin={{ id: comment._id, type: "comment", voteCount: comment.voteCount }} />
-    <button class="bg-gray-200 px-1 rounded" on:click={toggleComments}>comments ({comment.comments.length})</button>
-    <button class="bg-gray-200 px-1 rounded" on:click={createCommentOnComment(comment._id)}>create comment</button>
-  </div>
-  <!-- Show comments on comments -->
-  <!-- TODO: make this reactive and recursive -->
-  
-  {#if $openComments.get(comment._id)?.open}
-    <CommentSection originData={$openComments.get(originId).comments.find(c => c._id === comment._id)}/>
-  {/if}
-
-  <!-- <span class="text-error">Nested comment section placeholder</span>  -->
 </div>
+  
+<!-- Commenting options -->
+<div class="flex justify-between">
+  <!-- TODO: make these icons -->
+  <VoteControls origin={{ id: comment._id, type: "comment", voteCount: comment.voteCount }} />
+  <button class="bg-gray-200 px-1 rounded" on:click={toggleComments}>comments ({comment.comments.length})</button>
+  <button class="bg-gray-200 px-1 rounded" on:click={() => promptComment(comment._id)}>Reply</button>
+</div>
+
+<!-- Show comments on comments -->  
+{#if $openComments.get(comment._id)?.open}
+  <CommentSection originData={$openComments.get(originId).comments.find(c => c._id === comment._id)}/>
+{/if}
+
+{#if $commentModal.open && $commentModal.id === comment._id}
+  <CreateComment commentType="comment" originId={comment._id} originData={comment} />
+{/if}

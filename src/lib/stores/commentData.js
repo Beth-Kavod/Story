@@ -11,7 +11,16 @@ const openComments = writable(new Map())
 
 const commentModal = writable({
   open: false,
-  data: {}
+  id: ""
 })
 
-export { createCommentData, openComments, commentModal }
+function promptComment(id) {
+  commentModal.update(modal => {
+    modal.open = !modal.open
+    modal.id = id
+    
+    return modal
+  })
+} 
+
+export { createCommentData, openComments, commentModal, promptComment }
