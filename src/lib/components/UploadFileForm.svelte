@@ -3,6 +3,7 @@
   import forms from '$lib/stores/fileForms.js'
 
   export let index;
+  export let oldForm
 
   /* ------------------------------- Remove form ------------------------------ */
 
@@ -14,10 +15,9 @@
     console.log($forms)
   }
 
-
   /* ---------------------------- Tag functionality --------------------------- */
   
-  let selectedTags = [];
+  let selectedTags = oldForm?.tags?.split(",") || [];
 
   function addTag(tagsId) {
     const tagElement = document.getElementById(tagsId)
@@ -63,17 +63,17 @@
   <label for="date{index}" class="text-black flex items-center mr-2 col-span-1">
     Date:
   </label>
-  <input id="date{index}" type="date" name="date{index}" class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3" required>
+  <input id="date{index}" type="date" name="date{index}" class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3" value={oldForm?.date || ''} required>
   
   <label for="title{index}" class="text-black flex items-center mr-2 col-span-1">
     Title:
   </label>
-  <input id="title{index}" type="text" name="title{index}" class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3">
+  <input id="title{index}" type="text" name="title{index}" class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3" value={oldForm?.title || ''}>
   
   <label for="description{index}" class="text-black flex items-center mr-2 col-span-1">
     Description:
   </label>
-  <input id="description{index}" type="text" name="description{index}" class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3">
+  <input id="description{index}" type="text" name="description{index}" class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3" value={oldForm?.description || ''}>
   
   
   <label for="tags{index}" class="text-black flex items-center mr-2 col-span-1">
@@ -86,7 +86,7 @@
         <option value={tag}>{tag}</option>
       {/each}
     </datalist>
-    <button class="col-span-1 place-self-end items-center flex w-min h-8 text-primary font-semibold bg-white p-1 text-3xl" on:click={event => { addTag(`tags${index}`); event.preventDefault() }}>+</button>
+    <button class="col-span-1 place-self-end items-center flex w-min h-8 text-primary font-semibold bg-white p-1 text-3xl" on:click|preventDefault={addTag(`tags${index}`)}>+</button>
   </div>
   
   <!-- Hidden input field to store the selectedTags array in FormData for request -->
@@ -95,7 +95,7 @@
   <label for="privacy{index}" class="text-black flex items-center mr-2 col-span-1">
     Privacy:
   </label>
-  <select id="privacy{index}" name="privacy{index}" class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3">
+  <select id="privacy{index}" name="privacy{index}" class="mx-1 p-1 border-b-2 border-gray-300 text-black col-span-3" value={oldForm?.privacy || 'Private'}>
     <option value="Private">Private</option>
     <option value="Public">Public</option>
     <option value="Unlisted">Unlisted</option>
@@ -117,13 +117,13 @@
         {#each selectedTags as tag}
           <li>
             {tag}
-            <button class="text-red-500" on:click={event => { removeTag(tag); event.preventDefault() }}>Remove</button>
+            <button class="text-red-500" on:click|preventDefault={removeTag(tag)}>Remove</button>
           </li>
         {/each}
       </ul>
     </div>
   {/if}
 
-  <button class="text-error col-span-4" on:click={event => { event.preventDefault(); removeForm() }}>Remove file</button>
+  <button class="text-error col-span-4" on:click|preventDefault={removeForm()}>Remove file</button>
 
 </div>

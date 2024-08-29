@@ -1,4 +1,7 @@
 <script>
+  import ArrowDown from '$lib/assets/icons/arrow-down.svg'
+  import ArrowUp from '$lib/assets/icons/arrow-up.svg'
+  
   export let origin
 
   // Template response for the updating of the voteCount
@@ -23,8 +26,11 @@
 </script>
 
 <div class="w-16 grid grid-cols-3 grid-rows-1">
-  <!-- TODO: Get icons for arrows -->
-  <button on:click={() => castVote(false)}>{"<"}</button>
+  <button on:click={() => castVote(true)}>
+    <img src={ArrowUp} alt="Arrow up voting" class="w-full">
+  </button>
   <span class="text-center">{ response.data.voteCount || origin.voteCount}</span>
-  <button on:click={() => castVote(true)}>{">"}</button>
+  <button on:click={() => castVote(false)}>
+    <img src={ArrowDown} alt="Arrow down voting" class="w-full">
+  </button>
 </div>

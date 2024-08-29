@@ -22,7 +22,6 @@ export const actions = {
     })
 
     const response = await uploadRequest.json()
-    console.log(response)
     if (response.success) {
       return {
         success: true,
@@ -30,14 +29,19 @@ export const actions = {
       }
     } else {
       // Filter out file input, you cant send it back in the response.
-      // Sending the file in the response will cause a stringify errors
+      // Sending the file in the response will cause stringify errors
       const filteredFormData = new FormData()
       for (const [name, value] of formData.entries()) {
         // Exclude file input from the form data
-        if (value instanceof File) continue
+        if (value instanceof File) {
+          filteredFormData.append(name, value.name)
+          continue
+        }
   
         filteredFormData.append(name, value)
       }
+
+      console.log(filteredFormData)
 
       return {
         success: false,

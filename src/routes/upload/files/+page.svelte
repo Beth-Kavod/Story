@@ -32,7 +32,33 @@
     if (!addedForm) console.log("you may only upload 10 files at a time")
   }
 
-  addForm()
+  onMount(() => addForm())
+
+  // If file uploading fails then separate the returned data into new forms with the files that failed
+  function separateReturnedForms(formData) {
+    const result = [];
+    let index = 0;
+
+    while (`date${index}` in formData) {
+      const item = {
+        date: formData[`date${index}`],
+        title: formData[`title${index}`],
+        description: formData[`description${index}`],
+        tags: formData[`tags${index}`],
+        privacy: formData[`privacy${index}`],
+        file: formData[`file${index}`],
+      };
+
+      result.push(item);
+      index++;
+    }
+
+    return result;
+  }
+
+  // If uploading a file fails then make an array of failed files
+  let returnedForms = []
+  if (form?.success === false) returnedForms = separateReturnedForms(form.formData) 
 </script>
 
 <h1 class="text-6xl my-8">Upload files</h1>
@@ -45,7 +71,7 @@
   <form method="POST" action="?/uploadFiles" enctype="multipart/form-data"  class="grid-cols-4 text-black gap-y-2 grid grid-flow-row">
     {#each $forms as form, index (index)}
       {#if form[1] !== null}
-        <UploadFileForm index={index} />
+        <UploadFileForm index={index} oldForm={returnedForms[index]}/>
         <div class="border-b-2 border-black col-span-4" />
       {/if}
     {/each}

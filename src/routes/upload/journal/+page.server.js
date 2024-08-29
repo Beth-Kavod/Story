@@ -1,12 +1,18 @@
+import { redirect } from '@sveltejs/kit'
 import { ApiHostname } from '$env/static/private';
+
 
 export const load = async ({ fetch, cookies }) => {
   // Set the time frame to the current date
   const timeFrame = new Date().toLocaleDateString()
 
   const formattedTime = timeFrame.replace(/\//g, '-')
-  
-  const userId = JSON.parse(cookies.get("userStore")).userId
+
+  // If not signed in then redirect to login
+  const userStore = cookies.get("userStore")
+  if (!userStore) redirect(307, '/auth/login')
+
+  const userId = JSON.parse(userStore).userId
 
   // Fetch the first post the user made today
   const fetchPost = await fetch(`${ApiHostname}/search/posts?startDate=${formattedTime}&endDate=${formattedTime}&user=${userId}`, {
