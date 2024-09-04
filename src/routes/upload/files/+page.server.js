@@ -28,12 +28,21 @@ export const actions = {
         message: 'Upload successful, upload more?'
       }
     } else {
+      if (uploadRequest.status == 500) {
+        return {
+          success: false,
+          message: 'There was an error on the server, please try again',
+        }
+      }
+      
       // Filter out file input, you cant send it back in the response.
       // Sending the file in the response will cause stringify errors
       const filteredFormData = new FormData()
       for (const [name, value] of formData.entries()) {
         // Exclude file input from the form data
+
         if (value instanceof File) {
+          
           filteredFormData.append(name, value.name)
           continue
         }
@@ -46,7 +55,8 @@ export const actions = {
       return {
         success: false,
         message: 'Upload failed, please try again',
-        formData: Object.fromEntries(filteredFormData)
+        formData: Object.fromEntries(filteredFormData),
+        failedUploads: response.failedUploads || []
       }
     }
   }

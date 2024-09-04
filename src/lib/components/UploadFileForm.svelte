@@ -86,7 +86,7 @@
         <option value={tag}>{tag}</option>
       {/each}
     </datalist>
-    <button class="col-span-1 place-self-end items-center flex w-min h-8 text-primary font-semibold bg-white p-1 text-3xl" on:click|preventDefault={addTag(`tags${index}`)}>+</button>
+    <button class="col-span-1 place-self-end items-center flex w-min h-8 text-primary font-semibold bg-white p-1 text-3xl" on:click|preventDefault={() => addTag(`tags${index}`)}>+</button>
   </div>
   
   <!-- Hidden input field to store the selectedTags array in FormData for request -->
@@ -117,13 +117,13 @@
         {#each selectedTags as tag}
           <li>
             {tag}
-            <button class="text-red-500" on:click|preventDefault={removeTag(tag)}>Remove</button>
+            <button class="text-red-500" on:click|preventDefault={() => removeTag(tag)}>Remove</button>
           </li>
         {/each}
       </ul>
     </div>
   {/if}
 
-  <button class="text-error col-span-4" on:click|preventDefault={removeForm()}>Remove file</button>
+  <button class="text-error col-span-4" on:click|preventDefault={() => removeForm()}>Remove file</button>
 
 </div>

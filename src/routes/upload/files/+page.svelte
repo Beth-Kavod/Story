@@ -35,22 +35,30 @@
   onMount(() => addForm())
 
   // If file uploading fails then separate the returned data into new forms with the files that failed
-  function separateReturnedForms(formData) {
+  function separateReturnedForms(form) {
+    console.log(form)
     const result = [];
-    let index = 0;
 
-    while (`date${index}` in formData) {
+    for (let i = 0; i < 10; i++) {
+      const { formData, failedUploads } = form
+
+      let included = false
+      failedUploads.map(file => {
+        if (formData[`file${i}`] === file.name) included = true
+      })
+
+      if (!included) continue
+
       const item = {
-        date: formData[`date${index}`],
-        title: formData[`title${index}`],
-        description: formData[`description${index}`],
-        tags: formData[`tags${index}`],
-        privacy: formData[`privacy${index}`],
-        file: formData[`file${index}`],
+        date: formData[`date${i}`],
+        title: formData[`title${i}`],
+        description: formData[`description${i}`],
+        tags: formData[`tags${i}`],
+        privacy: formData[`privacy${i}`],
+        file: formData[`file${i}`],
       };
 
       result.push(item);
-      index++;
     }
 
     return result;
@@ -58,7 +66,7 @@
 
   // If uploading a file fails then make an array of failed files
   let returnedForms = []
-  if (form?.success === false) returnedForms = separateReturnedForms(form.formData) 
+  if (form?.success === false) returnedForms = separateReturnedForms(form) 
 </script>
 
 <h1 class="text-6xl my-8">Upload files</h1>
@@ -75,7 +83,7 @@
         <div class="border-b-2 border-black col-span-4" />
       {/if}
     {/each}
-    <button class="text-black col-span-2 mr-2 border-2 rounded hover:bg-slate-100" on:click={event => { event.preventDefault(); addForm() }}>Add more files +</button>
+    <button class="text-black col-span-2 mr-2 border-2 rounded hover:bg-slate-100" on:click={(event) => {event.preventDefault(); addForm()}}>Add more files +</button>
     <button type="submit" class="bg-blue-600 text-white rounded-sm ml-2 col-span-2">Submit</button>
   </form>
 </div>
