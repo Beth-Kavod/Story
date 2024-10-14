@@ -50,7 +50,7 @@ export const actions = {
         filteredFormData.append(name, value)
       }
 
-      console.log(filteredFormData)
+      // console.log(filteredFormData)
 
       return {
         success: false,

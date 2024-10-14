@@ -36,7 +36,7 @@
 
   // If file uploading fails then separate the returned data into new forms with the files that failed
   function separateReturnedForms(form) {
-    console.log(form)
+    // console.log(form)
     const result = [];
 
     for (let i = 0; i < 10; i++) {

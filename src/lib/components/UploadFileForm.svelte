@@ -12,7 +12,6 @@
       form.set(index, null)
       return form
     })
-    console.log($forms)
   }
 
   /* ---------------------------- Tag functionality --------------------------- */

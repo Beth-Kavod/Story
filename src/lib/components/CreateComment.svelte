@@ -28,7 +28,7 @@
     })
 
     const response = await uploadComment.json()
-    console.log(response)
+    // console.log(response)
     goto(window.location.pathname)
   }
 
